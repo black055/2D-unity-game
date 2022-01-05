@@ -13,10 +13,10 @@ public class CombatController : MonoBehaviour
 
     [SerializeField]
     private float attackDamage, attackRange;
-
-    public Transform attackCheck;
-
-    public LayerMask damageableLayer;
+    [SerializeField]
+    private Transform attackCheck;
+    [SerializeField]
+    private LayerMask damageableLayer;
 
     private void Start()
     {
@@ -35,12 +35,12 @@ public class CombatController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && knightController.GetState("isGrounded")) {
             if (!isAttacking) {
                 isAttacking = true;
+                if (knightController.GetState("isCrouching")) secondAttacking = true;
                 animator.SetBool("isAttacking", isAttacking);
             } else if (secondAttacking == false) {
                 secondAttacking = true;
                 animator.SetBool("secondAttacking", secondAttacking);
             }
-            
         }
     }
 
@@ -62,9 +62,17 @@ public class CombatController : MonoBehaviour
     private void enemyDetect() {
         Collider2D[] hitedEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRange, damageableLayer);
 
+        float[] attackDetails = new float[2];
+        attackDetails[0] = attackDamage;
+        attackDetails[1] = transform.position.x;
+
         foreach (Collider2D enemy in hitedEnemies) {
-            enemy.transform.parent.SendMessage("Damage", attackDamage);
+            enemy.transform.parent.SendMessage("Damage", attackDetails);
         }
+    }
+
+    public void StopAttack() {
+        secondAttackFinished();
     }
 
     private void OnDrawGizmos()

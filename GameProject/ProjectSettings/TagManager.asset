@@ -17,7 +17,7 @@ TagManager:
   - Damageable
   - Dead
   - Knight
-  - 
+  - Decoration
   - 
   - 
   - 
@@ -51,4 +51,7 @@ TagManager:
     locked: 0
   - name: Knight
     uniqueID: 1101313615
+    locked: 0
+  - name: UI
+    uniqueID: 551996991
     locked: 0

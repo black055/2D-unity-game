@@ -6,18 +6,26 @@ public class StatController : MonoBehaviour
 {
     [SerializeField]
     private float maxHealth, maxStamina, staminaRegenPerSec;
-    public StaminaBar staminaBar;
+    [SerializeField]
+    private StaminaBar staminaBar;
+    [SerializeField]
+    private HealthBar healthBar;
 
+    SpawnManager spawnManager;
     KnightController knightController;
+    Animator animator;
 
     private float currentStamina, currentHealth;
 
     void Start()
     {
+        spawnManager = GameObject.Find("GameManager").GetComponent<SpawnManager>();
         knightController = GetComponent<KnightController>();
+        animator = GetComponent<Animator>();
         currentStamina = maxStamina;
         currentHealth = maxHealth;
         staminaBar.SetMaxStamina(maxStamina);
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
@@ -26,8 +34,7 @@ public class StatController : MonoBehaviour
             currentStamina += Time.deltaTime * staminaRegenPerSec;
         }
         staminaBar.SetStamina(currentStamina);
-
-        if (Input.GetKeyDown(KeyCode.R)) { currentStamina -= 20f; }
+        healthBar.SetHealth(currentHealth);
     }
 
     // return true if enough and false if not
@@ -37,5 +44,23 @@ public class StatController : MonoBehaviour
             return true;
         }
         else return false;
+    }
+
+    public void ChangeHealth(float amount) {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        if (currentHealth <= 0f) {
+            animator.SetBool("IsDead", true);
+            gameObject.layer = LayerMask.NameToLayer("Dead");
+            Destroy(gameObject, 5f);
+            spawnManager.Respawn();
+        }
+    }
+
+    public bool IsDead() {
+        return currentHealth <= 0f;
+    }
+
+    public void Checkpoint(Vector3 checkpointPosition) {
+        spawnManager.UpdateRespawnPosition(checkpointPosition);
     }
 }

@@ -8,11 +8,14 @@ public class KnightController : MonoBehaviour
     Animator animator;
     CombatController combatController;
     StatController statController;
+    SpriteRenderer spriteRenderer;
 
     private int facingDirection = 1;
     private float horizontal = 0f;
     private float nextSlideTime = 0f;
     private float nextDashTime = 0f;
+    private float nextTimeBeingAttack = 0f;
+    private float nextTimeMove = 0f;
 
     private bool isMoving;
     private bool isGrounded;
@@ -27,29 +30,31 @@ public class KnightController : MonoBehaviour
     private bool isUnderneathSomething;
     private bool isDashing;
     private bool isAttacking;
+    private bool knockback;
 
     [SerializeField]
-    private float speed, slideSpeed, dashSpeed, crouchSpeed, jumpForce, wallSlideSpeed;
+    private float speed,slideSpeed, dashSpeed, crouchSpeed, jumpForce, wallSlideSpeed;
     [SerializeField]
     private float groundCheckRadius, ceilCheckRadius, wallCheckDistance;
     [SerializeField]
-    private float wallJumpTime, slidingTime, dashingTime, slideCooldownTime, dashCooldownTime;
+    private float wallJumpTime, slidingTime, dashingTime, slideCooldownTime, dashCooldownTime, beingAttackCooldownTime;
     [SerializeField]
     private float wallClimbXOffset1, wallClimbYOffset1, wallClimbXOffset2, wallClimbYOffset2;
     [SerializeField]
     private float slideStaminaCost, dashStaminaCost, wallJumpStaminaCost, wallSlideCost;
+    [SerializeField]
+    private float knockbackSpeedX, knockbackSpeedY, knockbackDuration, stunTime;
 
     private Vector2 wallCornerBottom;
     private Vector2 wallClimbPos1;
     private Vector2 wallClimbPos2;
 
-    public Vector2 wallJumpDirection;
-
-    public Transform wallCornerCheck;
-    public Transform groundCheck;
-    public Transform wallCheck;
-
-    public LayerMask groundLayer;
+    [SerializeField]
+    private Vector2 wallJumpDirection;
+    [SerializeField]
+    private Transform wallCornerCheck, groundCheck, wallCheck;
+    [SerializeField]
+    private LayerMask groundLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -59,22 +64,27 @@ public class KnightController : MonoBehaviour
         combatController = GetComponent<CombatController>();
         statController = GetComponent<StatController>();
         wallJumpDirection.Normalize();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update() {
-        HandleInput();
-        CheckMove();
-        UpdateAnimations();
+        if (!statController.IsDead()) {
+            HandleInput();
+            CheckMove();
+            UpdateAnimations();
+        }
+        if (Time.time < nextTimeBeingAttack) {
+            spriteRenderer.color = new Color(1, 0.5f, 0.5f);
+        } else spriteRenderer.color = Color.white;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!isClimbingWall) {
+        if (!(isClimbingWall || statController.IsDead())) {
             UpdatePosition();
             CheckSurroundings();
         }
-        
     }
 
     private void UpdatePosition() {
@@ -96,6 +106,11 @@ public class KnightController : MonoBehaviour
         if (isSliding) {
             transform.position += new Vector3(slideSpeed * facingDirection * Time.deltaTime, 0, 0);
         } 
+
+        if (knockback) {
+            rb2d.velocity = new Vector2(knockbackSpeedX * -facingDirection, knockbackSpeedY);
+        }
+
         if (isDashing) {
             transform.position += new Vector3(dashSpeed * facingDirection * Time.deltaTime, 0, 0);
             if (isTouchingWall) SetDashingToFalse();
@@ -103,7 +118,7 @@ public class KnightController : MonoBehaviour
     }
 
     private void HandleInput() {
-        if (!(isSliding || isDashing)) horizontal = Input.GetAxis("Horizontal");
+        if (!(isSliding || isDashing) && Time.time > nextTimeMove) horizontal = Input.GetAxis("Horizontal");
 
         if (Input.GetButtonDown("Jump") && !isSliding && !isAttacking) {
             if (isGrounded)
@@ -229,7 +244,7 @@ public class KnightController : MonoBehaviour
 
     private void CheckSurroundings()
     {
-        isGrounded = Physics2D.Raycast(groundCheck.position, transform.up * -1f, groundCheckRadius, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, groundLayer);
         isTouchingWallCorner = Physics2D.Raycast(wallCornerCheck.position, transform.right, wallCheckDistance, groundLayer);
         isUnderneathSomething = Physics2D.Raycast(wallCornerCheck.position, transform.up, ceilCheckRadius, groundLayer);
@@ -241,11 +256,11 @@ public class KnightController : MonoBehaviour
     }
 
     private void climbFinished() {
+        animator.SetBool("isClimbing", false);
         transform.position = wallClimbPos2;
         wallCornerDetected = false;
         isClimbingWall = false;
         rb2d.velocity = Vector2.zero;
-        animator.SetBool("isClimbing", false);
     }
 
     private void OnDrawGizmos()
@@ -274,5 +289,29 @@ public class KnightController : MonoBehaviour
 
     public bool CheckCanRegenStamina() {
         return !(isSliding || isWallSliding || isDashing || !isGrounded);
+    }
+
+    public void Damage(float attackDamage, float xPosition) {
+        if (Time.time > nextTimeBeingAttack && !isDashing) {
+            int attackerDirection = transform.position.x > xPosition ? -1 : 1;
+            if (facingDirection != attackerDirection) FlipX();
+            Knockback();
+            statController.ChangeHealth(-attackDamage);
+        }
+        
+    }
+
+    private void Knockback() {
+        horizontal = 0;
+        isSliding = false;
+        knockback = true;
+        nextTimeMove = Time.time + stunTime;
+        nextTimeBeingAttack = Time.time + beingAttackCooldownTime;
+        Invoke("SetKnockbackToFalse", knockbackDuration);
+        combatController.StopAttack();
+    }
+
+    private void SetKnockbackToFalse() {
+        knockback = false;
     }
 }
