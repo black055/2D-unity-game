@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class AttackHelper : MonoBehaviour
 {
-    BasicEnemyController controller;
+    BasicEnemyController basicController;
+    EliteEnemyController eliteController;
 
     private void Start() {
-        controller = transform.parent.gameObject.GetComponent<BasicEnemyController>();
+        basicController = transform.parent.gameObject.GetComponent<BasicEnemyController>();
+        eliteController = transform.parent.gameObject.GetComponent<EliteEnemyController>();
     }
 
     private void finishAttack() {
-        controller.finishAttack();
+        if (basicController != null) basicController.finishAttack();
+        if (eliteController != null) eliteController.finishAttack();
     }
 }

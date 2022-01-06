@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemyController : MonoBehaviour
+public class EliteEnemyController : MonoBehaviour
 {
     [SerializeField]
     private float maxHealth, moveSpeed, damage;
@@ -11,15 +11,17 @@ public class BasicEnemyController : MonoBehaviour
     [SerializeField]
     private GameObject hitEffect;
     [SerializeField]
-    private float groundCheckDistance, damageWidth, damageHeight, attackRange, attackCooldown, stunTime;
+    private float groundCheckDistance, playerDetectDistance, attackRange, attackCooldown, stunTime, idleTime, moveDistance;
     [SerializeField]
     private int numAttackTime;
     [SerializeField]
     private EnemyHealthBar healthBar;
 
     private float nextTimeAttack = 0f;
+    private float nextTimeMove;
     private float currentHealth;
     private float KnockbackEnd;
+    private float xLimitLeft, xLimitRight;
     private int facingDirection;
     private int faceToPlayer;
     private int attackLeft;
@@ -30,6 +32,8 @@ public class BasicEnemyController : MonoBehaviour
     private bool isGrounded;
     private bool isAttacking;
     private bool isMoving;
+    private bool playerDetected;
+    private bool isTooFar;
 
     [SerializeField]
     private Transform wallCheck, groundCheck, cornerCheck, damageCheck, attackCheck;
@@ -49,24 +53,30 @@ public class BasicEnemyController : MonoBehaviour
         aliveObject = transform.Find("Alive").gameObject;
         rbAlive = aliveObject.GetComponent<Rigidbody2D>();
         animator = aliveObject.GetComponent<Animator>();
-        isMoving = true;
         facingDirection = 1;
+        nextTimeMove = Time.time + idleTime;
+        xLimitLeft = transform.position.x - moveDistance;
+        xLimitRight = transform.position.x + moveDistance;
     }
 
     private void Update() {
         if (currentHealth > 0) {
+            UpdateAnimations();
+            DetectPlayer();
             UpdatePosition();
             CheckSurroundings();
-            CheckDamagePlayer();
             CheckAttackRange();
-            UpdateAnimations();
         }
     }
 
     private void UpdateAnimations() {
-        isMoving = (Time.time >= nextTimeAttack);
+        isMoving = (Time.time >= nextTimeAttack && Time.time >= nextTimeMove);
         
         animator.SetBool("isMoving", isMoving);
+    }
+
+    private void DetectPlayer() {
+
     }
 
     private void UpdatePosition() {
@@ -81,25 +91,24 @@ public class BasicEnemyController : MonoBehaviour
     }
 
     private void CheckSurroundings() {
-        isNearCorner = Physics2D.Raycast(cornerCheck.position, aliveObject.transform.up * -1f, groundCheckDistance, groundLayer);
+        isNearCorner = Physics2D.Raycast(cornerCheck.position, transform.up * -1f, groundCheckDistance, groundLayer);
         isTouchingWall = Physics2D.Raycast(wallCheck.position, aliveObject.transform.right, groundCheckDistance, groundLayer);
-        isGrounded = Physics2D.Raycast(groundCheck.position, aliveObject.transform.up * -1f, groundCheckDistance, groundLayer);
+        isGrounded = Physics2D.Raycast(groundCheck.position, transform.up * -1f, groundCheckDistance, groundLayer);
+        isTooFar = cornerCheck.position.x < xLimitLeft || cornerCheck.position.x > xLimitRight;
+        playerDetected = Physics2D.Raycast(damageCheck.position, aliveObject.transform.right, playerDetectDistance, knightLayer);
 
-        if (!isNearCorner || isTouchingWall) {
+        if (isTooFar && !playerDetected) {
+            if (cornerCheck.position.x < xLimitLeft && facingDirection == -1) {
+                FlipX();
+            }
+            if (cornerCheck.position.x > xLimitRight && facingDirection == 1) {
+                FlipX();
+            }
+        }
+
+        if ((!isNearCorner || isTouchingWall) && !isTooFar) {
             FlipX();
         }
-    }
-
-    private void CheckDamagePlayer() {
-        botLeftDamagePoint.Set(damageCheck.position.x - (damageWidth / 2), damageCheck.position.y - (damageHeight / 2));
-        topRightDamagePoint.Set(damageCheck.position.x + (damageWidth / 2), damageCheck.position.y + (damageHeight / 2));
-
-        Collider2D knight = Physics2D.OverlapArea(botLeftDamagePoint, topRightDamagePoint, knightLayer);
-
-        if (knight != null) {
-            knight.GetComponent<KnightController>().Damage(damage, damageCheck.position.x);
-        }
-
     }
 
     private void Damage(float[] attackDetails) {
@@ -137,6 +146,8 @@ public class BasicEnemyController : MonoBehaviour
 
     private void FlipX() {
         if (isGrounded && !knockback) {
+            rbAlive.velocity = new Vector2(0f, rbAlive.velocity.y);
+            nextTimeMove = Time.time + idleTime;
             facingDirection *= -1;
             rbAlive.transform.Rotate(0f, 180f, 0f);
         }
@@ -144,9 +155,8 @@ public class BasicEnemyController : MonoBehaviour
 
     private void CheckAttackRange() {
         if (!isAttacking && Time.time > nextTimeAttack) {
-            isAttacking = Physics2D.OverlapCircle(attackCheck.position, attackRange - 0.2f, knightLayer);
+            isAttacking = Physics2D.OverlapCircle(attackCheck.position, attackRange - 0.3f, knightLayer);
             if (isAttacking) {
-                rbAlive.velocity = new Vector2(0, rbAlive.velocity.y);
                 isMoving = false;
                 attackLeft = numAttackTime;
                 animator.SetTrigger("attack");
@@ -170,23 +180,11 @@ public class BasicEnemyController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // botLeftDamagePoint.Set(damageCheck.position.x - (damageWidth / 2), damageCheck.position.y - (damageHeight / 2));
-        // topRightDamagePoint.Set(damageCheck.position.x + (damageWidth / 2), damageCheck.position.y + (damageHeight / 2));
-
-        // Vector2 botleft = new Vector2(botLeftDamagePoint.x, botLeftDamagePoint.y);
-        // Vector2 botright = new Vector2(topRightDamagePoint.x, botLeftDamagePoint.y);
-        // Vector2 topleft = new Vector2(botLeftDamagePoint.x, topRightDamagePoint.y);
-        // Vector2 topright = new Vector2(topRightDamagePoint.x, topRightDamagePoint.y);
-
-        // Gizmos.DrawLine(botleft, botright);
-        // Gizmos.DrawLine(topleft, topright);
-        // Gizmos.DrawLine(botleft, topleft);
-        // Gizmos.DrawLine(topright, botright);
-
-        Gizmos.DrawWireSphere(attackCheck.position, attackRange);
-        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + groundCheckDistance, wallCheck.position.y, wallCheck.position.z));
-        Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x, cornerCheck.position.y - groundCheckDistance, cornerCheck.position.z));
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
+        // Gizmos.DrawWireSphere(attackCheck.position, attackRange);
+        // Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + groundCheckDistance, wallCheck.position.y, wallCheck.position.z));
+        // Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x, cornerCheck.position.y - groundCheckDistance, cornerCheck.position.z));
+        // Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
+        Gizmos.DrawLine(damageCheck.position, new Vector3(damageCheck.position.x + playerDetectDistance, damageCheck.position.y, damageCheck.position.z));
 
     }
 }

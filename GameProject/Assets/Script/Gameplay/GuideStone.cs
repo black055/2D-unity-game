@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GuideStone : MonoBehaviour
 {
     [SerializeField]
-    private float width, height; 
+    private float width, height;
     [SerializeField]
     public Vector3 offset;
     [SerializeField]
@@ -16,7 +16,7 @@ public class GuideStone : MonoBehaviour
     [SerializeField]
     private Text text;
 
-    private Vector2 botLeftDamagePoint, topRightDamagePoint; 
+    private Vector2 botLeftDamagePoint, topRightDamagePoint;
     private bool isReading, isNearPlayer;
     private GameObject interact;
 

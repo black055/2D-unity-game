@@ -247,7 +247,7 @@ public class KnightController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, groundLayer);
         isTouchingWallCorner = Physics2D.Raycast(wallCornerCheck.position, transform.right, wallCheckDistance, groundLayer);
-        isUnderneathSomething = Physics2D.Raycast(wallCornerCheck.position, transform.up, ceilCheckRadius, groundLayer);
+        isUnderneathSomething = Physics2D.Raycast(wallCheck.position, transform.up, ceilCheckRadius, groundLayer);
   
         if (isTouchingWall && !isTouchingWallCorner && !wallCornerDetected) {
             wallCornerDetected = true;
@@ -265,12 +265,12 @@ public class KnightController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        // Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
 
-        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
-        Gizmos.DrawLine(wallCornerCheck.position, new Vector3(wallCornerCheck.position.x + wallCheckDistance, wallCornerCheck.position.y, wallCornerCheck.position.z));
+        // Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
+        // Gizmos.DrawLine(wallCornerCheck.position, new Vector3(wallCornerCheck.position.x + wallCheckDistance, wallCornerCheck.position.y, wallCornerCheck.position.z));
 
-        //Gizmos.DrawLine(transform.position, new Vector3(wallCheck.position.x, wallCheck.position.y + ceilCheckRadius, wallCheck.position.z));
+        // Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x, wallCheck.position.y + ceilCheckRadius, wallCheck.position.z));
     }
 
     public bool GetState(string state) {
