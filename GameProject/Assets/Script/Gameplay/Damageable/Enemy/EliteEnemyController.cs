@@ -40,7 +40,6 @@ public class EliteEnemyController : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer, knightLayer;
 
-    private Vector2 botLeftDamagePoint, topRightDamagePoint; 
     private KnightController knightController;
     private GameObject aliveObject;
     private Rigidbody2D rbAlive;
@@ -62,7 +61,6 @@ public class EliteEnemyController : MonoBehaviour
     private void Update() {
         if (currentHealth > 0) {
             UpdateAnimations();
-            DetectPlayer();
             UpdatePosition();
             CheckSurroundings();
             CheckAttackRange();
@@ -73,10 +71,6 @@ public class EliteEnemyController : MonoBehaviour
         isMoving = (Time.time >= nextTimeAttack && Time.time >= nextTimeMove);
         
         animator.SetBool("isMoving", isMoving);
-    }
-
-    private void DetectPlayer() {
-
     }
 
     private void UpdatePosition() {
@@ -180,11 +174,10 @@ public class EliteEnemyController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // Gizmos.DrawWireSphere(attackCheck.position, attackRange);
+        Gizmos.DrawWireSphere(attackCheck.position, attackRange);
         // Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + groundCheckDistance, wallCheck.position.y, wallCheck.position.z));
         // Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x, cornerCheck.position.y - groundCheckDistance, cornerCheck.position.z));
         // Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
-        Gizmos.DrawLine(damageCheck.position, new Vector3(damageCheck.position.x + playerDetectDistance, damageCheck.position.y, damageCheck.position.z));
-
+        // Gizmos.DrawLine(damageCheck.position, new Vector3(damageCheck.position.x + playerDetectDistance, damageCheck.position.y, damageCheck.position.z));
     }
 }
