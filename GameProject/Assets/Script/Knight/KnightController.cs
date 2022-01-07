@@ -135,7 +135,7 @@ public class KnightController : MonoBehaviour
         if (Input.GetButton("Crouch")) {
             isCrouching = true;
         } else {
-            if (isUnderneathSomething) isCrouching = true;
+            if (isUnderneathSomething && isGrounded) isCrouching = true;
             else isCrouching = false;
         }
 
