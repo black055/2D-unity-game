@@ -46,6 +46,14 @@ public class StatController : MonoBehaviour
         else return false;
     }
 
+    public bool RecoverStamina(float amount) {
+        if (currentStamina <= maxStamina) {
+            currentStamina += amount;
+            return true;
+        }
+        return false;
+    }
+
     public void ChangeHealth(float amount) {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         if (currentHealth <= 0f) {
