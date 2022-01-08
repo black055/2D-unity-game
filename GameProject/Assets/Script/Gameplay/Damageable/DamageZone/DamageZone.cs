@@ -30,17 +30,17 @@ public class DamageZone : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // botLeftDamagePoint.Set(damagePoint.position.x - (width / 2), damagePoint.position.y - (height / 2));
-        // topRightDamagePoint.Set(damagePoint.position.x + (width / 2), damagePoint.position.y + (height / 2));
+        botLeftDamagePoint.Set(damagePoint.position.x - (width / 2), damagePoint.position.y - (height / 2));
+        topRightDamagePoint.Set(damagePoint.position.x + (width / 2), damagePoint.position.y + (height / 2));
 
-        // Vector2 botleft = new Vector2(botLeftDamagePoint.x, botLeftDamagePoint.y);
-        // Vector2 botright = new Vector2(topRightDamagePoint.x, botLeftDamagePoint.y);
-        // Vector2 topleft = new Vector2(botLeftDamagePoint.x, topRightDamagePoint.y);
-        // Vector2 topright = new Vector2(topRightDamagePoint.x, topRightDamagePoint.y);
+        Vector2 botleft = new Vector2(botLeftDamagePoint.x, botLeftDamagePoint.y);
+        Vector2 botright = new Vector2(topRightDamagePoint.x, botLeftDamagePoint.y);
+        Vector2 topleft = new Vector2(botLeftDamagePoint.x, topRightDamagePoint.y);
+        Vector2 topright = new Vector2(topRightDamagePoint.x, topRightDamagePoint.y);
 
-        // Gizmos.DrawLine(botleft, botright);
-        // Gizmos.DrawLine(topleft, topright);
-        // Gizmos.DrawLine(botleft, topleft);
-        // Gizmos.DrawLine(topright, botright);
+        Gizmos.DrawLine(botleft, botright);
+        Gizmos.DrawLine(topleft, topright);
+        Gizmos.DrawLine(botleft, topleft);
+        Gizmos.DrawLine(topright, botright);
     }
 }

@@ -183,7 +183,7 @@ public class BasicEnemyController : MonoBehaviour
         // Gizmos.DrawLine(botleft, topleft);
         // Gizmos.DrawLine(topright, botright);
 
-        Gizmos.DrawWireSphere(attackCheck.position, attackRange);
+        //Gizmos.DrawWireSphere(attackCheck.position, attackRange);
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + groundCheckDistance, wallCheck.position.y, wallCheck.position.z));
         Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x, cornerCheck.position.y - groundCheckDistance, cornerCheck.position.z));
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);

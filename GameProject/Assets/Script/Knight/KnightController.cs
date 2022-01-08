@@ -9,6 +9,7 @@ public class KnightController : MonoBehaviour
     CombatController combatController;
     StatController statController;
     SpriteRenderer spriteRenderer;
+    SoundManager soundManager;
 
     private int facingDirection = 1;
     private float horizontal = 0f;
@@ -65,6 +66,7 @@ public class KnightController : MonoBehaviour
         statController = GetComponent<StatController>();
         wallJumpDirection.Normalize();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        soundManager = SoundManager.instance;
     }
 
     void Update() {
@@ -88,19 +90,11 @@ public class KnightController : MonoBehaviour
     }
 
     private void UpdatePosition() {
-        if (!(isSliding || isDashing)) {
+        if (!(isSliding || isDashing) && isMoving) {
             if (isCrouching && isGrounded)
                 transform.position += new Vector3(crouchSpeed * horizontal * Time.deltaTime, 0, 0);
             else
                 transform.position += new Vector3(speed * horizontal * Time.deltaTime, 0, 0);
-        }
-        
-        if (isWallSliding)
-        {
-            if(rb2d.velocity.y < -wallSlideSpeed)
-            {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, -wallSlideSpeed);
-            }
         }
 
         if (isSliding) {
@@ -120,11 +114,15 @@ public class KnightController : MonoBehaviour
     private void HandleInput() {
         if (!(isSliding || isDashing) && Time.time > nextTimeMove) horizontal = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && !isSliding && !isAttacking) {
-            if (isGrounded)
+        if (Input.GetButtonDown("Jump") && !isSliding && !isAttacking && !isClimbingWall) {
+            if (isGrounded && !isUnderneathSomething) {
+                soundManager.PlaySound("KnightJump");
                 rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+                
             if (isWallSliding) {
                 if (statController.UseStamina(wallJumpStaminaCost)) {
+                    soundManager.PlaySound("KnightJump");
                     isWallJumping = true;
                     Invoke("SetWallJumpingToFalse", wallJumpTime);
                 }
@@ -142,6 +140,7 @@ public class KnightController : MonoBehaviour
         // Check if can slide (grounded, no crouching, no spam slide)
         if (Input.GetButtonDown("Slide") && isGrounded && !isCrouching && !isSliding && !isAttacking && Time.time >= nextSlideTime) {
             if (statController.UseStamina(slideStaminaCost)) {
+                soundManager.PlaySound("KnightSlide");
                 isSliding = true;
                 nextSlideTime = Time.time + slideCooldownTime;
                 animator.SetTrigger("isSliding");
@@ -152,6 +151,7 @@ public class KnightController : MonoBehaviour
         // Check if can slide (grounded, no touching wall, no crouching, no spam dash)
         if (Input.GetButtonDown("Dash") && !isTouchingWall  && !isCrouching && !isDashing && !isAttacking && Time.time >= nextDashTime) {
             if (statController.UseStamina(dashStaminaCost)) {
+                soundManager.PlaySound("KnightDash");
                 isDashing = true;
                 nextDashTime = Time.time + dashCooldownTime;
                 animator.SetBool("isDashing", true);
@@ -188,6 +188,10 @@ public class KnightController : MonoBehaviour
         if(horizontal != 0)
         {
             isMoving = true;
+            if (isGrounded && !isDashing && !isSliding) {
+                if (isCrouching) soundManager.PlaySound("KnightCrouchFootstep");
+                else soundManager.PlaySound("KnightFootstep");
+            }
         }
         else
         {
@@ -199,6 +203,15 @@ public class KnightController : MonoBehaviour
             isWallSliding = true;
         } else {
             isWallSliding = false;
+        }
+
+        if (isWallSliding)
+        {
+            if(rb2d.velocity.y < -wallSlideSpeed)
+            {
+                soundManager.PlaySound("KnightWallSlide");
+                rb2d.velocity = new Vector2(rb2d.velocity.x, -wallSlideSpeed);
+            }
         }
 
         if (isWallJumping) {
@@ -244,6 +257,9 @@ public class KnightController : MonoBehaviour
 
     private void CheckSurroundings()
     {
+        if (isGrounded == false && Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)) {
+            soundManager.PlaySound("KnightFootstep");
+        }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, groundLayer);
         isTouchingWallCorner = Physics2D.Raycast(wallCornerCheck.position, transform.right, wallCheckDistance, groundLayer);
@@ -309,6 +325,7 @@ public class KnightController : MonoBehaviour
         nextTimeBeingAttack = Time.time + beingAttackCooldownTime;
         Invoke("SetKnockbackToFalse", knockbackDuration);
         combatController.StopAttack();
+        soundManager.PlaySound("KnightHurt");
     }
 
     private void SetKnockbackToFalse() {

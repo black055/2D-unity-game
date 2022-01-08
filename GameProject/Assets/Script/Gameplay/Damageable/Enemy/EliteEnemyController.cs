@@ -174,10 +174,10 @@ public class EliteEnemyController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(attackCheck.position, attackRange);
-        // Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + groundCheckDistance, wallCheck.position.y, wallCheck.position.z));
-        // Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x, cornerCheck.position.y - groundCheckDistance, cornerCheck.position.z));
-        // Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
-        // Gizmos.DrawLine(damageCheck.position, new Vector3(damageCheck.position.x + playerDetectDistance, damageCheck.position.y, damageCheck.position.z));
+        //Gizmos.DrawWireSphere(attackCheck.position, attackRange);
+        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + groundCheckDistance, wallCheck.position.y, wallCheck.position.z));
+        Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x, cornerCheck.position.y - groundCheckDistance, cornerCheck.position.z));
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
+        //Gizmos.DrawLine(damageCheck.position, new Vector3(damageCheck.position.x + playerDetectDistance, damageCheck.position.y, damageCheck.position.z));
     }
 }

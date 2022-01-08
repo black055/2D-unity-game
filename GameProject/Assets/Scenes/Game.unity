@@ -324,7 +324,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &48346196
 PrefabInstance:
@@ -24257,7 +24257,7 @@ Transform:
   m_Children:
   - {fileID: 481124018}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &925209520
 GameObject:
@@ -29285,7 +29285,7 @@ Transform:
   - {fileID: 1740340002}
   - {fileID: 39186500}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1022711759
 PrefabInstance:
@@ -29589,6 +29589,95 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c09aa47d6e0e954f899cb8efe5a6816, type: 3}
+--- !u!1 &1159466880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1159466882}
+  - component: {fileID: 1159466881}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1159466881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159466880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13de8a23f8c7d66468adfe9c6276e510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: KnightJump
+    clip: {fileID: 8300000, guid: 8f888c413008c244d884e7b4475b863d, type: 3}
+    startTime: 0.08
+    volume: 0.4
+    pitch: 1
+  - name: KnightSlide
+    clip: {fileID: 8300000, guid: 2d29857f7772c234080aae4efa5ebc9e, type: 3}
+    startTime: 0
+    volume: 0.7
+    pitch: 1
+  - name: KnightHurt
+    clip: {fileID: 8300000, guid: 4e934a27c34a43245bed6dd7948753ef, type: 3}
+    startTime: 0.08
+    volume: 0.7
+    pitch: 1
+  - name: KnightFootstep
+    clip: {fileID: 8300000, guid: 26ea1d19da8c1dc419ff057ce46b938c, type: 3}
+    startTime: 0.02
+    volume: 1
+    pitch: 0.65
+  - name: KnightAttack1
+    clip: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+    startTime: 0
+    volume: 0.5
+    pitch: 1
+  - name: KnightAttack2
+    clip: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+    startTime: 0
+    volume: 0.5
+    pitch: 1
+  - name: KnightDash
+    clip: {fileID: 8300000, guid: ace111ff35fdf0a4290f4d6e3ae5fa07, type: 3}
+    startTime: 0
+    volume: 0.5
+    pitch: 1
+  - name: KnightCrouchFootstep
+    clip: {fileID: 8300000, guid: 26ea1d19da8c1dc419ff057ce46b938c, type: 3}
+    startTime: 0
+    volume: 0.2
+    pitch: 0.35
+  - name: KnightWallSlide
+    clip: {fileID: 8300000, guid: 00723ef81a687e140a37c037b0032d21, type: 3}
+    startTime: 0
+    volume: 1
+    pitch: 1
+--- !u!4 &1159466882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159466880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1208151212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7156919857442982628, guid: fb44cd6819bf6e94c8fdb4d1655eac2d, type: 3}
@@ -32747,63 +32836,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e928de2d0f228f4b870630032a6ee14, type: 3}
---- !u!1001 &8175261592172209581
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 49.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 11.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714808, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175261593910714814, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
-      propertyPath: m_Name
-      value: DarkWizard
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f1ddaab967a0ba24aa05f4cd431363d5, type: 3}
 --- !u!1001 &8433988086760666790
 PrefabInstance:
   m_ObjectHideFlags: 0

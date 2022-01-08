@@ -6,7 +6,7 @@ public class CombatController : MonoBehaviour
 {
 
     Animator animator;
-
+    SoundManager soundManager;
     KnightController knightController;
     private bool isAttacking;
     private bool secondAttacking;
@@ -22,6 +22,7 @@ public class CombatController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         knightController = GetComponent<KnightController>();
+        soundManager = SoundManager.instance;
         isAttacking = false;
         secondAttacking = false;
     }
@@ -44,6 +45,14 @@ public class CombatController : MonoBehaviour
         }
     }
 
+    private void firstAttackSound() {
+        soundManager.PlaySound("KnightAttack1");
+    }
+
+    private void secondAttackSound() {
+        soundManager.PlaySound("KnightAttack2");
+    }
+
     private void firstAttackFinished() {
         if (!secondAttacking)
         {
@@ -52,7 +61,7 @@ public class CombatController : MonoBehaviour
         }
     }
 
-    private void secondAttackFinished() {
+    private void secondAttackFinished() { 
         isAttacking = false;
         secondAttacking = false;
         animator.SetBool("isAttacking", isAttacking); 
