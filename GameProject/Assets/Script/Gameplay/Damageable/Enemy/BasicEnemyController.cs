@@ -11,7 +11,7 @@ public class BasicEnemyController : MonoBehaviour
     [SerializeField]
     private GameObject hitEffect;
     [SerializeField]
-    private float groundCheckDistance, damageWidth, damageHeight, attackRange, attackCooldown, stunTime;
+    private float groundCheckDistance, attackRange, attackCooldown, stunTime;
     [SerializeField]
     private int numAttackTime;
     [SerializeField]
@@ -32,7 +32,7 @@ public class BasicEnemyController : MonoBehaviour
     private bool isMoving;
 
     [SerializeField]
-    private Transform wallCheck, groundCheck, cornerCheck, damageCheck, attackCheck;
+    private Transform wallCheck, groundCheck, cornerCheck, attackCheck;
     [SerializeField]
     private LayerMask groundLayer, knightLayer;
 
@@ -57,7 +57,6 @@ public class BasicEnemyController : MonoBehaviour
         if (currentHealth > 0) {
             UpdatePosition();
             CheckSurroundings();
-            CheckDamagePlayer();
             CheckAttackRange();
             UpdateAnimations();
         }
@@ -88,18 +87,6 @@ public class BasicEnemyController : MonoBehaviour
         if (!isNearCorner || isTouchingWall) {
             FlipX();
         }
-    }
-
-    private void CheckDamagePlayer() {
-        botLeftDamagePoint.Set(damageCheck.position.x - (damageWidth / 2), damageCheck.position.y - (damageHeight / 2));
-        topRightDamagePoint.Set(damageCheck.position.x + (damageWidth / 2), damageCheck.position.y + (damageHeight / 2));
-
-        Collider2D knight = Physics2D.OverlapArea(botLeftDamagePoint, topRightDamagePoint, knightLayer);
-
-        if (knight != null) {
-            knight.GetComponent<KnightController>().Damage(damage, damageCheck.position.x);
-        }
-
     }
 
     private void Damage(float[] attackDetails) {
@@ -158,7 +145,7 @@ public class BasicEnemyController : MonoBehaviour
         Collider2D knight = Physics2D.OverlapCircle(attackCheck.position, attackRange, knightLayer);
 
         if (knight != null) {
-            knight.GetComponent<KnightController>().Damage(damage, damageCheck.position.x);
+            knight.GetComponent<KnightController>().Damage(damage, aliveObject.transform.position.x);
         }
 
         attackLeft--;
@@ -170,19 +157,6 @@ public class BasicEnemyController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // botLeftDamagePoint.Set(damageCheck.position.x - (damageWidth / 2), damageCheck.position.y - (damageHeight / 2));
-        // topRightDamagePoint.Set(damageCheck.position.x + (damageWidth / 2), damageCheck.position.y + (damageHeight / 2));
-
-        // Vector2 botleft = new Vector2(botLeftDamagePoint.x, botLeftDamagePoint.y);
-        // Vector2 botright = new Vector2(topRightDamagePoint.x, botLeftDamagePoint.y);
-        // Vector2 topleft = new Vector2(botLeftDamagePoint.x, topRightDamagePoint.y);
-        // Vector2 topright = new Vector2(topRightDamagePoint.x, topRightDamagePoint.y);
-
-        // Gizmos.DrawLine(botleft, botright);
-        // Gizmos.DrawLine(topleft, topright);
-        // Gizmos.DrawLine(botleft, topleft);
-        // Gizmos.DrawLine(topright, botright);
-
         //Gizmos.DrawWireSphere(attackCheck.position, attackRange);
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + groundCheckDistance, wallCheck.position.y, wallCheck.position.z));
         Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x, cornerCheck.position.y - groundCheckDistance, cornerCheck.position.z));

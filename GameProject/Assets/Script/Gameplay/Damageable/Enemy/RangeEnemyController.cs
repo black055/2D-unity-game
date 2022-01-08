@@ -166,10 +166,9 @@ public class RangeEnemyController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // Gizmos.DrawWireSphere(attackCheck.position, attackRange);
-        // Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + groundCheckDistance, wallCheck.position.y, wallCheck.position.z));
-        // Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x, cornerCheck.position.y - groundCheckDistance, cornerCheck.position.z));
-        // Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
+        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + groundCheckDistance, wallCheck.position.y, wallCheck.position.z));
+        Gizmos.DrawLine(cornerCheck.position, new Vector3(cornerCheck.position.x, cornerCheck.position.y - groundCheckDistance, cornerCheck.position.z));
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
         Gizmos.DrawLine(attackCheck.position, new Vector3(attackCheck.position.x + attackRange, attackCheck.position.y, attackCheck.position.z));
 
     }

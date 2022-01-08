@@ -267,7 +267,10 @@ public class KnightController : MonoBehaviour
   
         if (isTouchingWall && !isTouchingWallCorner && !wallCornerDetected) {
             wallCornerDetected = true;
-            wallCornerBottom = new Vector2 (Mathf.Floor(wallCheck.position.x +  wallCheckDistance), Mathf.Floor(wallCheck.position.y));
+            int yOffset = (wallCheck.position.y - Mathf.Floor(wallCheck.position.y) > 0.5f) ? 0 : -1;
+            float xPos = (facingDirection == 1) ? wallCheck.position.x +  wallCheckDistance : wallCheck.position.x;
+
+            wallCornerBottom = new Vector2 (Mathf.Floor(xPos), Mathf.Floor(wallCheck.position.y + yOffset));
         }
     }
 

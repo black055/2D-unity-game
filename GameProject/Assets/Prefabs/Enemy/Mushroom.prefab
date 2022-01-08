@@ -30,36 +30,6 @@ Transform:
   m_Father: {fileID: 1090557008417451594}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1090557008301324782
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1090557008301324785}
-  m_Layer: 7
-  m_Name: DamageCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1090557008301324785
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090557008301324782}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.33, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1090557008417451594}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1090557008417451595
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +65,6 @@ Transform:
   - {fileID: 1090557008970860285}
   - {fileID: 1090557007965159476}
   - {fileID: 1090557009011585869}
-  - {fileID: 1090557008301324785}
   - {fileID: 1090557009279544401}
   - {fileID: 8064834596296325904}
   m_Father: {fileID: 1090557008738470730}
@@ -272,8 +241,6 @@ MonoBehaviour:
   knockbackDuration: 0.2
   hitEffect: {fileID: 6924676750654198356, guid: f110e6d1c9349b44bba10fee11133c9e, type: 3}
   groundCheckDistance: 0.25
-  damageWidth: 0.72
-  damageHeight: 1.5
   attackRange: 0.7
   attackCooldown: 1
   stunTime: 0.5
@@ -282,7 +249,6 @@ MonoBehaviour:
   wallCheck: {fileID: 1090557007965159476}
   groundCheck: {fileID: 1090557009011585869}
   cornerCheck: {fileID: 1090557008970860285}
-  damageCheck: {fileID: 1090557008301324785}
   attackCheck: {fileID: 1090557009279544401}
   groundLayer:
     serializedVersion: 2
@@ -378,7 +344,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1090557008417451594}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1090557007633923072
 PrefabInstance:
@@ -401,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6975622291494323984, guid: be76335b77d81df4cba945c128ba93de, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6975622291494323984, guid: be76335b77d81df4cba945c128ba93de, type: 3}
       propertyPath: m_AnchorMax.x
