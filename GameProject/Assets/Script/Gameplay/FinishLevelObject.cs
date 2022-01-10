@@ -9,23 +9,25 @@ public class FinishLevelObject : MonoBehaviour
 
     private GameObject interact;
     private bool isNearPlayer;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         interact = transform.Find("Interact").gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isNearPlayer && Input.GetKeyDown(KeyCode.E)) {
+        if (isNearPlayer && gameManager.IsFinishedStage() && Input.GetKeyDown(KeyCode.E)) {
             Debug.Log("finish");
         }
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        if (((1<<collider.gameObject.layer) & knightLayer) != 0) {
+        if (gameManager.IsFinishedStage() && ((1<<collider.gameObject.layer) & knightLayer) != 0) {
             // If player walk in
             isNearPlayer = true;
             interact.SetActive(true);

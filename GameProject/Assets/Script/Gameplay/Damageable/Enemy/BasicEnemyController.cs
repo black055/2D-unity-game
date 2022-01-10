@@ -5,11 +5,11 @@ using UnityEngine;
 public class BasicEnemyController : MonoBehaviour
 {
     [SerializeField]
-    private float maxHealth, moveSpeed, damage;
+    private float maxHealth, moveSpeed, damage, moveDistance = 4f;
     [SerializeField]
     private float knockbackSpeedX, knockbackSpeedY, knockbackDuration;
     [SerializeField]
-    private GameObject hitEffect;
+    private GameObject hitEffect, bloodEffect;
     [SerializeField]
     private float groundCheckDistance, attackRange, attackCooldown, stunTime;
     [SerializeField]
@@ -20,6 +20,7 @@ public class BasicEnemyController : MonoBehaviour
     private float nextTimeAttack = 0f;
     private float currentHealth;
     private float KnockbackEnd;
+    private float xLimitLeft, xLimitRight;
     private int facingDirection;
     private int faceToPlayer;
     private int attackLeft;
@@ -30,6 +31,7 @@ public class BasicEnemyController : MonoBehaviour
     private bool isGrounded;
     private bool isAttacking;
     private bool isMoving;
+    private bool isTooFar;
 
     [SerializeField]
     private Transform wallCheck, groundCheck, cornerCheck, attackCheck;
@@ -41,8 +43,10 @@ public class BasicEnemyController : MonoBehaviour
     private GameObject aliveObject;
     private Rigidbody2D rbAlive;
     private Animator animator;
+    private SoundManager soundManager;
 
     private void Start() {
+        soundManager = SoundManager.instance;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         knightController = GameObject.Find("Knight").GetComponent<KnightController>();
@@ -51,6 +55,8 @@ public class BasicEnemyController : MonoBehaviour
         animator = aliveObject.GetComponent<Animator>();
         isMoving = true;
         facingDirection = 1;
+        xLimitLeft = transform.position.x - moveDistance;
+        xLimitRight = transform.position.x + moveDistance;
     }
 
     private void Update() {
@@ -83,8 +89,17 @@ public class BasicEnemyController : MonoBehaviour
         isNearCorner = Physics2D.Raycast(cornerCheck.position, aliveObject.transform.up * -1f, groundCheckDistance, groundLayer);
         isTouchingWall = Physics2D.Raycast(wallCheck.position, aliveObject.transform.right, groundCheckDistance, groundLayer);
         isGrounded = Physics2D.Raycast(groundCheck.position, aliveObject.transform.up * -1f, groundCheckDistance, groundLayer);
+        isTooFar = cornerCheck.position.x < xLimitLeft || cornerCheck.position.x > xLimitRight;
 
-        if (!isNearCorner || isTouchingWall) {
+        if (isTooFar) {
+            if (cornerCheck.position.x < xLimitLeft && facingDirection == -1) {
+                FlipX();
+            }
+            if (cornerCheck.position.x > xLimitRight && facingDirection == 1) {
+                FlipX();
+            }
+        }
+        else if (!isNearCorner || isTouchingWall) {
             FlipX();
         }
     }
@@ -97,14 +112,14 @@ public class BasicEnemyController : MonoBehaviour
         if (faceToPlayer != facingDirection) {
             FlipX();
         }
-
-        Instantiate(hitEffect, aliveObject.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
-
+        
         animator.SetTrigger("damage");
 
         if (currentHealth > 0.0f) {
+            Instantiate(hitEffect, aliveObject.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
             Knockback();
         } else {
+            Instantiate(bloodEffect, aliveObject.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
             Die();
         }
     }
@@ -118,6 +133,7 @@ public class BasicEnemyController : MonoBehaviour
     }
 
     private void Die() {
+        soundManager.PlaySound("EnemyDead");
         animator.SetBool("isDead", true);
         aliveObject.layer = LayerMask.NameToLayer("Dead");
     }

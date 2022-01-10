@@ -823,7 +823,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1101313615
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 3204480812468917802, guid: 5e1bec727eae98044b72882bd34cf21d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -894,6 +894,7 @@ MonoBehaviour:
   crouchSpeed: 1.5
   jumpForce: 12
   wallSlideSpeed: 0.5
+  fallDamage: 0
   groundCheckRadius: 0.25
   ceilCheckRadius: 0.75
   wallCheckDistance: 0.45
@@ -973,6 +974,7 @@ MonoBehaviour:
   staminaRegenPerSec: 5
   staminaBar: {fileID: 70114079}
   healthBar: {fileID: 2039193645}
+  lifeCounter: {fileID: 0}
 --- !u!1 &7280450138348428107
 GameObject:
   m_ObjectHideFlags: 0

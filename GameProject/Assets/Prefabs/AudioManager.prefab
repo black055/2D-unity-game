@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6188346850206969970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6188346850206969972}
+  - component: {fileID: 6188346850206969973}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6188346850206969972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188346850206969970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6188346850206969973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188346850206969970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13de8a23f8c7d66468adfe9c6276e510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: KnightJump
+    clip: {fileID: 8300000, guid: 8f888c413008c244d884e7b4475b863d, type: 3}
+    startTime: 0.08
+    volume: 0.4
+    pitch: 1
+  - name: KnightSlide
+    clip: {fileID: 8300000, guid: 2d29857f7772c234080aae4efa5ebc9e, type: 3}
+    startTime: 0
+    volume: 0.7
+    pitch: 1
+  - name: KnightHurt
+    clip: {fileID: 8300000, guid: 4e934a27c34a43245bed6dd7948753ef, type: 3}
+    startTime: 0.08
+    volume: 0.7
+    pitch: 1
+  - name: KnightFootstep
+    clip: {fileID: 8300000, guid: 26ea1d19da8c1dc419ff057ce46b938c, type: 3}
+    startTime: 0.02
+    volume: 1
+    pitch: 0.65
+  - name: KnightAttack1
+    clip: {fileID: 8300000, guid: 0a7b4e20c16abce4eb8597f2a0c125a7, type: 3}
+    startTime: 0
+    volume: 0.8
+    pitch: 1
+  - name: KnightAttack2
+    clip: {fileID: 8300000, guid: 7c12ad5d2dc96f94d9bd70ee2a9298f7, type: 3}
+    startTime: 0
+    volume: 0.8
+    pitch: 1
+  - name: KnightDash
+    clip: {fileID: 8300000, guid: ace111ff35fdf0a4290f4d6e3ae5fa07, type: 3}
+    startTime: 0
+    volume: 0.5
+    pitch: 1
+  - name: KnightCrouchFootstep
+    clip: {fileID: 8300000, guid: 26ea1d19da8c1dc419ff057ce46b938c, type: 3}
+    startTime: 0
+    volume: 0.2
+    pitch: 0.35
+  - name: KnightWallSlide
+    clip: {fileID: 8300000, guid: 00723ef81a687e140a37c037b0032d21, type: 3}
+    startTime: 0
+    volume: 1
+    pitch: 1
+  - name: Checkpoint
+    clip: {fileID: 8300000, guid: 830c5091b1cdc8446814c079f2989065, type: 3}
+    startTime: 0
+    volume: 1
+    pitch: 1
+  - name: HitEnemy
+    clip: {fileID: 8300000, guid: 4e39e2e8d001b6c4a89c82807a555473, type: 3}
+    startTime: 0.1
+    volume: 0.6
+    pitch: 0.7
+  - name: RespawnCountdown
+    clip: {fileID: 8300000, guid: 0efbd00eb3edcee40ae7a90516105c03, type: 3}
+    startTime: 0
+    volume: 1
+    pitch: 1
+  - name: EnemyDead
+    clip: {fileID: 8300000, guid: aa08b1fbd05d03543b1720e40f4f2e3d, type: 3}
+    startTime: 0
+    volume: 1
+    pitch: 1

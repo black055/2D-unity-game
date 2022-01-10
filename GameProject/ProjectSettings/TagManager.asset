@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Knight
+  - Villager
   layers:
   - Default
   - TransparentFX
@@ -51,6 +52,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 1642430955
+    locked: 0
+  - name: Villager
+    uniqueID: 3878951139
     locked: 0
   - name: Knight
     uniqueID: 1101313615

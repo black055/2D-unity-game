@@ -76,6 +76,7 @@ public class CombatController : MonoBehaviour
         attackDetails[1] = transform.position.x;
 
         foreach (Collider2D enemy in hitedEnemies) {
+            soundManager.PlaySound("HitEnemy");
             enemy.transform.parent.SendMessage("Damage", attackDetails);
         }
     }

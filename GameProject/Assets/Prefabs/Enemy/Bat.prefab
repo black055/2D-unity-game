@@ -242,6 +242,7 @@ MonoBehaviour:
   knockbackSpeedY: 0.05
   knockbackDuration: 0.3
   hitEffect: {fileID: 6924676750654198356, guid: f110e6d1c9349b44bba10fee11133c9e, type: 3}
+  bloodEffect: {fileID: 7816581947631615125, guid: 6293f253ca2a7734291f50cb80336f33, type: 3}
   groundCheckDistance: 0.25
   attackRange: 0.59
   attackCooldown: 2
@@ -494,6 +495,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6975622291494323984, guid: be76335b77d81df4cba945c128ba93de, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975622291494323984, guid: be76335b77d81df4cba945c128ba93de, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975622291494323984, guid: be76335b77d81df4cba945c128ba93de, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975622291494323984, guid: be76335b77d81df4cba945c128ba93de, type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6975622291494323984, guid: be76335b77d81df4cba945c128ba93de, type: 3}

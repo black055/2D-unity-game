@@ -17,6 +17,7 @@ public class KnightController : MonoBehaviour
     private float nextDashTime = 0f;
     private float nextTimeBeingAttack = 0f;
     private float nextTimeMove = 0f;
+    private float minVelocityY = 0f;
 
     private bool isMoving;
     private bool isGrounded;
@@ -34,7 +35,7 @@ public class KnightController : MonoBehaviour
     private bool knockback;
 
     [SerializeField]
-    private float speed,slideSpeed, dashSpeed, crouchSpeed, jumpForce, wallSlideSpeed;
+    private float speed,slideSpeed, dashSpeed, crouchSpeed, jumpForce, wallSlideSpeed, fallDamage;
     [SerializeField]
     private float groundCheckRadius, ceilCheckRadius, wallCheckDistance;
     [SerializeField]
@@ -108,6 +109,11 @@ public class KnightController : MonoBehaviour
         if (isDashing) {
             transform.position += new Vector3(dashSpeed * facingDirection * Time.deltaTime, 0, 0);
             if (isTouchingWall) SetDashingToFalse();
+        }
+
+        if (isGrounded) minVelocityY = 0f;
+        else {
+            minVelocityY = Mathf.Min(minVelocityY, rb2d.velocity.y);
         }
     }
 
@@ -258,6 +264,7 @@ public class KnightController : MonoBehaviour
     private void CheckSurroundings()
     {
         if (isGrounded == false && Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)) {
+            if (minVelocityY < -25f) Damage(fallDamage, transform.position.x);
             soundManager.PlaySound("KnightFootstep");
         }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -312,7 +319,7 @@ public class KnightController : MonoBehaviour
 
     public void Damage(float attackDamage, float xPosition) {
         if (Time.time > nextTimeBeingAttack && !isDashing) {
-            int attackerDirection = transform.position.x > xPosition ? -1 : 1;
+            int attackerDirection = transform.position.x >= xPosition ? -1 : 1;
             if (facingDirection != attackerDirection) FlipX();
             Knockback();
             statController.ChangeHealth(-attackDamage);

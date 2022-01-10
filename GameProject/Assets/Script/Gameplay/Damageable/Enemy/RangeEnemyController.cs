@@ -9,7 +9,7 @@ public class RangeEnemyController : MonoBehaviour
     [SerializeField]
     private float knockbackSpeedX, knockbackSpeedY, knockbackDuration;
     [SerializeField]
-    private GameObject hitEffect;
+    private GameObject hitEffect, bloodEffect;
     [SerializeField]
     private float groundCheckDistance, playerDetectRange, attackRange, attackCooldown, stunTime, idleTime, moveDistance;
     [SerializeField]
@@ -44,8 +44,10 @@ public class RangeEnemyController : MonoBehaviour
     private GameObject aliveObject;
     private Rigidbody2D rbAlive;
     private Animator animator;
+    private SoundManager soundManager;
 
     private void Start() {
+        soundManager = SoundManager.instance;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         knightController = GameObject.Find("Knight").GetComponent<KnightController>();
@@ -113,13 +115,13 @@ public class RangeEnemyController : MonoBehaviour
             FlipX();
         }
 
-        Instantiate(hitEffect, aliveObject.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
-
         animator.SetTrigger("damage");
 
         if (currentHealth > 0.0f) {
+            Instantiate(hitEffect, aliveObject.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
             Knockback();
         } else {
+            Instantiate(bloodEffect, aliveObject.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
             Die();
         }
     }
@@ -133,6 +135,7 @@ public class RangeEnemyController : MonoBehaviour
     }
 
     private void Die() {
+        soundManager.PlaySound("EnemyDead");
         animator.SetBool("isDead", true);
         aliveObject.layer = LayerMask.NameToLayer("Dead");
     }

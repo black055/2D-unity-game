@@ -361,6 +361,7 @@ MonoBehaviour:
   knockbackSpeedY: 5
   knockbackDuration: 0.2
   hitEffect: {fileID: 6924676750654198356, guid: f110e6d1c9349b44bba10fee11133c9e, type: 3}
+  bloodEffect: {fileID: 7816581947631615125, guid: 6293f253ca2a7734291f50cb80336f33, type: 3}
   groundCheckDistance: 0.25
   playerDetectDistance: 7
   attackRange: 1.1

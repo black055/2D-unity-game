@@ -10,10 +10,16 @@ public class CheckpointController : MonoBehaviour
     private Transform checkPoint;
 
     private bool isChecked;
+    private GameObject fire, glow, spark;
+    private SoundManager soundManager;
 
     void Start()
     {
         isChecked = false;
+        fire = transform.Find("Fire").gameObject;
+        glow = transform.Find("Glow").gameObject;
+        spark = transform.Find("Spark").gameObject;
+        soundManager = SoundManager.instance;
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -21,7 +27,10 @@ public class CheckpointController : MonoBehaviour
             // If player walk in
             isChecked = true;
             collider.gameObject.GetComponent<StatController>().Checkpoint(checkPoint.position);
-            Debug.Log("New Respawn Position");
+            fire.SetActive(true);
+            glow.SetActive(true);
+            spark.SetActive(true);
+            soundManager.PlaySound("Checkpoint");
         }
     }
 }

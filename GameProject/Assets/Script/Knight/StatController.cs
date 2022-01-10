@@ -11,7 +11,7 @@ public class StatController : MonoBehaviour
     [SerializeField]
     private HealthBar healthBar;
 
-    SpawnManager spawnManager;
+    GameManager gameManager;
     KnightController knightController;
     Animator animator;
 
@@ -19,7 +19,7 @@ public class StatController : MonoBehaviour
 
     void Start()
     {
-        spawnManager = GameObject.Find("GameManager").GetComponent<SpawnManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         knightController = GetComponent<KnightController>();
         animator = GetComponent<Animator>();
         currentStamina = maxStamina;
@@ -59,8 +59,8 @@ public class StatController : MonoBehaviour
         if (currentHealth <= 0f) {
             animator.SetBool("IsDead", true);
             gameObject.layer = LayerMask.NameToLayer("Dead");
-            Destroy(gameObject, 5f);
-            spawnManager.Respawn();
+            Destroy(gameObject, 4f);
+            gameManager.Respawn();
         }
     }
 
@@ -69,6 +69,6 @@ public class StatController : MonoBehaviour
     }
 
     public void Checkpoint(Vector3 checkpointPosition) {
-        spawnManager.UpdateRespawnPosition(checkpointPosition);
+        gameManager.UpdateRespawnPosition(checkpointPosition);
     }
 }
