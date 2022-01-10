@@ -524,6 +524,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isClimbing
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsDead
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2778796591626531635}
   m_Solo: 0

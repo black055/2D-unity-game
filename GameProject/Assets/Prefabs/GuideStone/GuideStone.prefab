@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5041400819746627615}
   - component: {fileID: 5041400819746627614}
   - component: {fileID: 5041400819746627609}
+  - component: {fileID: 520591549}
   m_Layer: 0
   m_Name: GuideStone
   m_TagString: Untagged
@@ -97,14 +98,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2302fc5768269fa4bb4b84febd349f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 3
-  height: 2.5
   offset: {x: 0, y: 2.5, z: 0}
   knightLayer:
     serializedVersion: 2
     m_Bits: 512
   dialog: {fileID: 5041400820184892884}
-  text: {fileID: 5041400820276537027}
+--- !u!61 &520591549
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5041400819746627608}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.34736073, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.625, y: 2.4583333}
+    newSize: {x: 2.625, y: 2.4583333}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.1972685, y: 2.4583333}
+  m_EdgeRadius: 0
 --- !u!1 &5041400820184892881
 GameObject:
   m_ObjectHideFlags: 0

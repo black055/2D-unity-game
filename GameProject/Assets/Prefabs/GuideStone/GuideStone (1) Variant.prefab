@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 520591549, guid: 25608ffbcf095b344a051b4a80cb415c, type: 3}
+      propertyPath: m_Size.x
+      value: 3.1369019
+      objectReference: {fileID: 0}
+    - target: {fileID: 520591549, guid: 25608ffbcf095b344a051b4a80cb415c, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.8044164
+      objectReference: {fileID: 0}
+    - target: {fileID: 520591549, guid: 25608ffbcf095b344a051b4a80cb415c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.2916666
+      objectReference: {fileID: 0}
+    - target: {fileID: 520591549, guid: 25608ffbcf095b344a051b4a80cb415c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.2916666
+      objectReference: {fileID: 0}
     - target: {fileID: 5041400819746627608, guid: 25608ffbcf095b344a051b4a80cb415c, type: 3}
       propertyPath: m_Name
       value: GuideStone (1)
@@ -37,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5041400819746627615, guid: 25608ffbcf095b344a051b4a80cb415c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.388408
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5041400819746627615, guid: 25608ffbcf095b344a051b4a80cb415c, type: 3}
       propertyPath: m_LocalRotation.w
