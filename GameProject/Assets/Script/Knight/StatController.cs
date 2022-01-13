@@ -64,6 +64,10 @@ public class StatController : MonoBehaviour
         }
     }
 
+    public bool IsFullHealth() {
+        return currentHealth >= maxHealth;
+    }
+
     public bool IsDead() {
         return currentHealth <= 0f;
     }

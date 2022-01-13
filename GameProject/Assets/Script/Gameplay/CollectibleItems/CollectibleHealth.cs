@@ -25,6 +25,8 @@ public class CollectibleHealth : MonoBehaviour
     if (other.tag == "Knight")
     {
       StatController knightStatController = other.GetComponent<StatController>();
+      if (knightStatController.IsFullHealth())
+        return;
       knightStatController.ChangeHealth(amountOfHealthRecovered);
       if (pickUpClip)
         AudioSource.PlayClipAtPoint(pickUpClip, other.transform.position);
