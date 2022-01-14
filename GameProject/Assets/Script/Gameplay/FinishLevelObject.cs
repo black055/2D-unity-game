@@ -11,8 +11,6 @@ public class FinishLevelObject : MonoBehaviour
     private bool isNearPlayer;
     private GameManager gameManager;
     [SerializeField] GameObject finishScreen;
-    [SerializeField] GameObject knight;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +23,6 @@ public class FinishLevelObject : MonoBehaviour
     {
         if (isNearPlayer && gameManager.IsFinishedStage() && Input.GetKeyDown(KeyCode.E)) {
             Debug.Log("finish");
-            knight.SetActive(false);
             finishScreen.SetActive(true);
         }
     }

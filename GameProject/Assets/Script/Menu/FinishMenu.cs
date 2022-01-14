@@ -12,6 +12,7 @@ public class FinishMenu : MonoBehaviour
 	[SerializeField] Animator animator;
 	[SerializeField] AnimatorFunctions animatorFunctions;
 	[SerializeField] TextMeshProUGUI textButton;
+	// private GameObject Knight;
 	private Scene stage;
 	[SerializeField] int thisIndex;
 
@@ -20,8 +21,11 @@ public class FinishMenu : MonoBehaviour
 			if(stage.name == "GameStage3") {
 				textButton.text = "Play Again";
 			}
-		}
 
+			//fixed knight !!!
+			// Knight = GameObject.FindGameObjectWithTag("Knight");
+			// Knight.GetComponent<KnightController>().enabled = false;
+		}
     // Update is called once per frame
     void Update()
     {

@@ -16,12 +16,12 @@ public class GameManager : MonoBehaviour
     private int lifeLeft = 3;
     [SerializeField]
     private Text lifeCounter, villagerCounter;
-
     private CinemachineVirtualCamera playerCamera;
     private bool respawn;
     private float respawnTime = -1f; 
     private SoundManager soundManager;
     private int villagerRescued;
+    [SerializeField] GameObject loseMenu;
 
     public void Respawn() {
         if (lifeLeft > 1) {
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
             soundManager.PlaySound("RespawnCountdown");
         } else {
             soundManager.PlaySound("Lose");
+            loseMenu.SetActive(true);
         }
     }
 
@@ -67,5 +68,9 @@ public class GameManager : MonoBehaviour
 
     public bool IsFinishedStage() {
         return villagerRescued == GameObject.FindGameObjectsWithTag("Villager").Length;
+    }
+
+    public int getLifeLeft() {
+        return lifeLeft;
     }
 }

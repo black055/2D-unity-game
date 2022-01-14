@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LoseMenu : MonoBehaviour
 {
-    [SerializeField] LoseMenuController loseMenuController;
+  [SerializeField] LoseMenuController loseMenuController;
 	[SerializeField] Animator animator;
 	[SerializeField] AnimatorFunctions animatorFunctions;
 	[SerializeField] int thisIndex;

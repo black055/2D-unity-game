@@ -258,6 +258,9 @@ MonoBehaviour:
   index: 0
   keyDown: 0
   maxIndex: 1
+  mainCamera: {fileID: 0}
+  timeCount: {fileID: 4945927432485656334}
+  lifeCount: {fileID: 4945927433099772465}
   audioSource: {fileID: 0}
 --- !u!82 &4945927432951543356
 AudioSource:
@@ -565,8 +568,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: 200}
-  m_SizeDelta: {x: 160, y: 79.6564}
+  m_AnchoredPosition: {x: 120.771484, y: 204.85}
+  m_SizeDelta: {x: 241.543, y: 79.6564}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4945927432485656335
 CanvasRenderer:
@@ -688,7 +691,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: X 5
+  m_Text: X 3
 --- !u!1 &4945927433435766665
 GameObject:
   m_ObjectHideFlags: 0

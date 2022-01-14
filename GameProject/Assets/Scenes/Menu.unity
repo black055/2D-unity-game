@@ -1732,11 +1732,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 3c0c08888cc2d4247a634ed07a1a861c, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7e2feae0bfd791f4faf609ca087943ab, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 744a9b3142747d641b6d95db57b61179, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5582,6 +5582,7 @@ MonoBehaviour:
   isFullScreen: {fileID: 1254864691}
   audioMixer: {fileID: 24100000, guid: 3c0c08888cc2d4247a634ed07a1a861c, type: 2}
   resolutionDropdown: {fileID: 48707565}
+  soundInGame: {fileID: 0}
 --- !u!1001 &1685844094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7594,6 +7595,7 @@ MonoBehaviour:
   isFullScreen: {fileID: 1254864691}
   audioMixer: {fileID: 24100000, guid: 3c0c08888cc2d4247a634ed07a1a861c, type: 2}
   resolutionDropdown: {fileID: 48707565}
+  soundInGame: {fileID: 0}
 --- !u!1 &2094948439
 GameObject:
   m_ObjectHideFlags: 0
@@ -7700,6 +7702,7 @@ MonoBehaviour:
   isFullScreen: {fileID: 1254864691}
   audioMixer: {fileID: 24100000, guid: 3c0c08888cc2d4247a634ed07a1a861c, type: 2}
   resolutionDropdown: {fileID: 48707565}
+  soundInGame: {fileID: 0}
 --- !u!1 &2132710665
 GameObject:
   m_ObjectHideFlags: 0

@@ -127,6 +127,7 @@ MonoBehaviour:
   lifeLeft: 3
   lifeCounter: {fileID: 3704875108234133501}
   villagerCounter: {fileID: 3704875109512371289}
+  loseMenu: {fileID: 0}
 --- !u!1 &3704875108234133499
 GameObject:
   m_ObjectHideFlags: 0

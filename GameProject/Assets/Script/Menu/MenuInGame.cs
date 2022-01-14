@@ -6,36 +6,26 @@ public class MenuInGame : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject PauseMenu;
-    [SerializeField] GameObject LoseMenu;
-    [SerializeField] GameObject WinMenu;
     [SerializeField] GameObject Enemies;
-    [SerializeField] GameObject Knight;
-    public static bool isPaused = false;
+    GameObject currentKnight;
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)) {
-            if(isPaused) {
-                Resume();
-            }
-            else {
+        GameObject Knight = GameObject.FindGameObjectWithTag("Knight");
+        if(Knight != null) {
+            currentKnight = Knight;
+        }
+        if(currentKnight != null) {
+            if(Input.GetKeyDown(KeyCode.Escape)) {
                 Pause();
             }
-        }
-        if(!PauseMenu.activeSelf) {
-            Enemies.SetActive(true);
-            Knight.SetActive(true);
+            if(!PauseMenu.activeSelf) {
+                currentKnight.GetComponent<KnightController>().enabled = true;
+            }
         }
     }
-
-    public void Resume() {
-        isPaused = false;
-    }
-
     public void Pause() {
-        isPaused = true;
         PauseMenu.SetActive(true);
-        Enemies.SetActive(false);
-        Knight.SetActive(false);
+        currentKnight.GetComponent<KnightController>().enabled = false;
     }
 }
