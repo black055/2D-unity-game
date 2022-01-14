@@ -15,10 +15,15 @@ public class LevelMenu : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] Image background;
     [SerializeField] Sprite levelBackground;
+    [SerializeField] GameObject mainBackground;
     // Update is called once per frame
     private int index = -1;
+
     void Update()
     {
+        if(gameObject.activeSelf) {
+            mainBackground.SetActive(false);
+        }
 		if(levelMenuController.index == thisIndex)
 		{
 			animator.SetBool ("selected", true);
@@ -35,9 +40,7 @@ public class LevelMenu : MonoBehaviour
 			animator.SetBool ("selected", false);
 		}
         if(Input.GetKeyDown(KeyCode.Escape)) {
-            DestinationMenu.SetActive(true);
-            MainMenu.SetActive(false);
-            Thread.Sleep(100);
+            StartCoroutine(Back(0.35f));
         }
         if(index != -1) {
             Run(index);
@@ -79,5 +82,12 @@ public class LevelMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene("GameStage3");
+    }
+    IEnumerator Back(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        DestinationMenu.SetActive(true);
+        MainMenu.SetActive(false);
+        mainBackground.SetActive(true);
     }
 }

@@ -2950,10 +2950,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 5232842310525073221}
-  LoseMenu: {fileID: 0}
-  WinMenu: {fileID: 0}
-  Enemies: {fileID: 0}
-  Knight: {fileID: 0}
 --- !u!1 &5232842311211717332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4499,6 +4495,25 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5151825081113806923, guid: dfbe87e8149796647a03cbcd45a9bb4e, type: 3}
   m_PrefabInstance: {fileID: 5232842310805040063}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5232842310404146421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143984429242754037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7f9fa4a8b53ef4a9d5bcbc789e4045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuButtonController: {fileID: 0}
+  optionMenuController: {fileID: 5232842311289531298}
+  levelMenuController: {fileID: 0}
+  pauseMenuController: {fileID: 0}
+  finishMenuController: {fileID: 0}
+  loseMenuController: {fileID: 0}
+  disableOnce: 1
 --- !u!114 &5232842310805040051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4522,25 +4537,6 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 3c0c08888cc2d4247a634ed07a1a861c, type: 2}
   resolutionDropdown: {fileID: 5232842309824732833}
   soundInGame: {fileID: 0}
---- !u!114 &5232842310404146421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143984429242754037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7f9fa4a8b53ef4a9d5bcbc789e4045, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuButtonController: {fileID: 0}
-  optionMenuController: {fileID: 5232842311289531298}
-  levelMenuController: {fileID: 0}
-  pauseMenuController: {fileID: 0}
-  finishMenuController: {fileID: 0}
-  loseMenuController: {fileID: 0}
-  disableOnce: 1
 --- !u!1001 &5232842311041123366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4775,6 +4771,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5151825081113806922, guid: dfbe87e8149796647a03cbcd45a9bb4e, type: 3}
   m_PrefabInstance: {fileID: 5232842311041123366}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5232842310404146420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143984428402412652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7f9fa4a8b53ef4a9d5bcbc789e4045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuButtonController: {fileID: 0}
+  optionMenuController: {fileID: 5232842311289531298}
+  levelMenuController: {fileID: 0}
+  pauseMenuController: {fileID: 0}
+  finishMenuController: {fileID: 0}
+  loseMenuController: {fileID: 0}
+  disableOnce: 0
 --- !u!114 &5232842311041123386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4798,22 +4813,3 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 3c0c08888cc2d4247a634ed07a1a861c, type: 2}
   resolutionDropdown: {fileID: 5232842309824732833}
   soundInGame: {fileID: 0}
---- !u!114 &5232842310404146420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143984428402412652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7f9fa4a8b53ef4a9d5bcbc789e4045, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuButtonController: {fileID: 0}
-  optionMenuController: {fileID: 5232842311289531298}
-  levelMenuController: {fileID: 0}
-  pauseMenuController: {fileID: 0}
-  finishMenuController: {fileID: 0}
-  loseMenuController: {fileID: 0}
-  disableOnce: 0

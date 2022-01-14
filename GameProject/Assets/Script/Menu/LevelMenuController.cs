@@ -8,9 +8,9 @@ public class LevelMenuController : MonoBehaviour
 	[SerializeField] bool keyDown;
 	[SerializeField] int maxIndex;
 	public AudioSource audioSource;
-
+	[SerializeField] GameObject background;
 	void Start () {
-        index = 0;
+    index = 0;
 		audioSource = GetComponent<AudioSource>();
 	}
 	

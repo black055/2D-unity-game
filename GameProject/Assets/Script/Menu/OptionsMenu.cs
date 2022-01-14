@@ -19,13 +19,15 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] Dropdown resolutionDropdown;
     [SerializeField] SoundManager soundInGame;
     Resolution[] resolutions;
-    bool isFullscreen = false;
     private void Start() {
-        isFullScreen.isOn = isFullscreen;
+        setFullScreen(false);
+
+        //sound
         volume.maxValue = 0;
         volume.minValue = -80;
         volume.value = 0;
         
+        //resolution
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
@@ -43,6 +45,7 @@ public class OptionsMenu : MonoBehaviour
 
         resolutionDropdown.AddOptions(options);
         ChangeResolution(currentResolutionIndex);
+        setResolution(currentResolutionIndex);
     }
     // Update is called once per frame
     void Update()
@@ -72,7 +75,9 @@ public class OptionsMenu : MonoBehaviour
                 if(index<0) {
                 index = resolutions.Length - 1;
                 }
+                Debug.Log(index);
                 ChangeResolution(index);
+                setResolution(index);
             }
             if(Input.GetKeyDown(KeyCode.RightArrow)) {
                 int index = resolutionDropdown.value + 1;
@@ -80,17 +85,18 @@ public class OptionsMenu : MonoBehaviour
                     index = 0;
                 }
                 ChangeResolution(index);
+                setResolution(index);
             }
 		}
         else if(optionMenuController.index == 1) {
             if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-                isFullScreen.isOn = false;
+                setFullScreen(false);
             }
             if(Input.GetKeyDown(KeyCode.RightArrow)) {
-                isFullScreen.isOn = true;
+                setFullScreen(true);
             }
             if(Input.GetKeyDown(KeyCode.Return)) {
-                isFullScreen.isOn = !isFullScreen.isOn;
+                setFullScreen(!isFullScreen.isOn);
             }
 		}
         else if(optionMenuController.index == 2) {
@@ -116,4 +122,12 @@ public class OptionsMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
+    public void setResolution(int index) {
+        Resolution resolution = resolutions[index];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+    public void setFullScreen(bool isfullScreen) {
+        isFullScreen.isOn = isfullScreen;
+        Screen.fullScreen = isfullScreen;
+    }
 }

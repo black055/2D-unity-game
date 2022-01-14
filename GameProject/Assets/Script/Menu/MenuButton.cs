@@ -15,6 +15,17 @@ public class MenuButton : MonoBehaviour
 	int checkPressed = -1;
 
     // Update is called once per frame
+		private void Start() {
+			//resolution
+        Resolution[] resolutions = Screen.resolutions;
+        int currentResolutionIndex = 0;
+        for(int i = 0; i< resolutions.Length; i++) {
+            if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height){
+                currentResolutionIndex = i;
+            }
+        }
+				Screen.SetResolution(resolutions[currentResolutionIndex].width, resolutions[currentResolutionIndex].height, false);
+		}
     void Update()
     {
 			if(menuButtonController.index == thisIndex)
