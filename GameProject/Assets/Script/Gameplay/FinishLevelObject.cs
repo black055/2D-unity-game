@@ -10,11 +10,14 @@ public class FinishLevelObject : MonoBehaviour
     private GameObject interact;
     private bool isNearPlayer;
     private GameManager gameManager;
+    private SoundManager soundManager;
+
     [SerializeField] GameObject finishScreen;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        soundManager = SoundManager.instance;
         interact = transform.Find("Interact").gameObject;
     }
 
@@ -22,7 +25,7 @@ public class FinishLevelObject : MonoBehaviour
     void Update()
     {
         if (isNearPlayer && gameManager.IsFinishedStage() && Input.GetKeyDown(KeyCode.E)) {
-            Debug.Log("finish");
+            soundManager.PlaySound("FinishStage");
             finishScreen.SetActive(true);
         }
     }
