@@ -37,12 +37,20 @@ public class LoseMenu : MonoBehaviour
 		IEnumerator PlayAgain(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+				AudioSource source = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
+				if(source != null) {
+					source.mute = true;
+				}
         Scene scene = SceneManager.GetActiveScene();
 				SceneManager.LoadScene(scene.name, LoadSceneMode.Single);
     }
 		IEnumerator BackToMenu(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+				AudioSource source = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
+				if(source != null) {
+					source.mute = true;
+				}
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 }

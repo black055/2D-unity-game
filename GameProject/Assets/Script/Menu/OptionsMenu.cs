@@ -17,16 +17,23 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] Toggle isFullScreen;
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Dropdown resolutionDropdown;
-    [SerializeField] SoundManager soundInGame;
+    GameObject soundInGame;
     Resolution[] resolutions;
     private void Start() {
         setFullScreen(false);
-
+        float volumeValue;
         //sound
         volume.maxValue = 0;
         volume.minValue = -80;
-        volume.value = 0;
+        audioMixer.GetFloat("volume", out volumeValue);
+        volume.value = volumeValue;
         
+        //soundManager
+        soundInGame = GameObject.FindGameObjectWithTag("AudioManager");
+        if(soundInGame != null) {
+            soundInGame.GetComponent<SoundManager>().VolumeChange(volumeValue);
+        }
+
         //resolution
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
@@ -75,7 +82,6 @@ public class OptionsMenu : MonoBehaviour
                 if(index<0) {
                 index = resolutions.Length - 1;
                 }
-                Debug.Log(index);
                 ChangeResolution(index);
                 setResolution(index);
             }
@@ -101,13 +107,17 @@ public class OptionsMenu : MonoBehaviour
 		}
         else if(optionMenuController.index == 2) {
             if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-                soundInGame.VolumeDown();
                 volume.value -= 1;
+                if(soundInGame!=null) {
+                    soundInGame.GetComponent<SoundManager>().VolumeChange(volume.value);
+                }
                 SetVolume(volume.value);
             }
             if(Input.GetKeyDown(KeyCode.RightArrow)) {
-                soundInGame.VolumeUp();
                 volume.value += 1;
+                if(soundInGame!=null) {
+                    soundInGame.GetComponent<SoundManager>().VolumeChange(volume.value);
+                }
                 SetVolume(volume.value);
             }
 		}

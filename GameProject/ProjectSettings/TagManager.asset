@@ -8,6 +8,7 @@ TagManager:
   - Knight
   - Villager
   - GameManager
+  - AudioManager
   layers:
   - Default
   - TransparentFX

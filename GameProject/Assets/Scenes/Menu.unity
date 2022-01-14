@@ -5424,7 +5424,6 @@ MonoBehaviour:
   isFullScreen: {fileID: 1254864691}
   audioMixer: {fileID: 24100000, guid: 3c0c08888cc2d4247a634ed07a1a861c, type: 2}
   resolutionDropdown: {fileID: 48707565}
-  soundInGame: {fileID: 0}
 --- !u!114 &1624380044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1938994039, guid: dfbe87e8149796647a03cbcd45a9bb4e, type: 3}
@@ -7448,7 +7447,6 @@ MonoBehaviour:
   isFullScreen: {fileID: 1254864691}
   audioMixer: {fileID: 24100000, guid: 3c0c08888cc2d4247a634ed07a1a861c, type: 2}
   resolutionDropdown: {fileID: 48707565}
-  soundInGame: {fileID: 0}
 --- !u!114 &2091822589 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1938994039, guid: dfbe87e8149796647a03cbcd45a9bb4e, type: 3}
@@ -7566,7 +7564,6 @@ MonoBehaviour:
   isFullScreen: {fileID: 1254864691}
   audioMixer: {fileID: 24100000, guid: 3c0c08888cc2d4247a634ed07a1a861c, type: 2}
   resolutionDropdown: {fileID: 48707565}
-  soundInGame: {fileID: 0}
 --- !u!114 &2108993468 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1938994039, guid: dfbe87e8149796647a03cbcd45a9bb4e, type: 3}

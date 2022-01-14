@@ -53,11 +53,19 @@ public class FinishMenu : MonoBehaviour
 		IEnumerator BackToMenu(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+				AudioSource source = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
+				if(source != null) {
+					source.mute = true;
+				}
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
     IEnumerator NextLevel(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+				AudioSource source = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
+				if(source != null) {
+					source.mute = true;
+				}
         if(stage.name == "GameStage1") {
 					SceneManager.LoadScene("GameStage2", LoadSceneMode.Single);
 				}

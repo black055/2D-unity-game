@@ -50,6 +50,10 @@ public class PauseMenu : MonoBehaviour
 		IEnumerator BackMainMenu(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+				AudioSource source = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
+				if(source != null) {
+					source.mute = true;
+				}
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 

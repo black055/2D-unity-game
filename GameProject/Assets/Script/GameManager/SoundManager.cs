@@ -19,9 +19,9 @@ public class Sound {
         source.clip = clip;
     }
 
-    public void Play() {
+    public void Play(float currentVolume) {
         if (!source.isPlaying ) {
-            source.volume = volume;
+            source.volume = currentVolume;
             source.pitch = pitch;
             source.time = startTime;
             source.Play();
@@ -40,6 +40,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     Sound[] sounds;
     List<float> volumes = new List<float>();
+    float volumeRate = 1f;
 
     private void Awake() {
         if (instance != null) {
@@ -62,28 +63,14 @@ public class SoundManager : MonoBehaviour
     public void PlaySound(string name) {
         for (int i = 0; i < sounds.Length; i++) {
             if (sounds[i].name == name) {
-                sounds[i].Play();
+                sounds[i].Play(volumeRate*volumes[i]);
                 return;
             }
         }
         Debug.Log("No sound found: " + name);
     }
 
-    public void VolumeUp() {
-        for (int i = 0; i < sounds.Length; i++) {
-            if (sounds[i].volume >= volumes[i]) {
-                return;
-            }
-            sounds[i].volume += volumes[i]*0.035f;
-        }
-    }
-
-    public void VolumeDown() {
-        for (int i = 0; i < sounds.Length; i++) {
-            if (sounds[i].volume <= 0) {
-                return;
-            }
-            sounds[i].volume -= volumes[i]*0.035f;
-        }
+    public void VolumeChange(float volume) {
+        volumeRate = (80-(-volume))*0.0125f;
     }
 }
