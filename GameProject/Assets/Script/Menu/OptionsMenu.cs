@@ -101,13 +101,13 @@ public class OptionsMenu : MonoBehaviour
 		}
         else if(optionMenuController.index == 2) {
             if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-                // soundInGame.VolumeDown();
-                volume.value -= 2;
+                soundInGame.VolumeDown();
+                volume.value -= 1;
                 SetVolume(volume.value);
             }
             if(Input.GetKeyDown(KeyCode.RightArrow)) {
-                // soundInGame.VolumeUp();
-                volume.value += 2;
+                soundInGame.VolumeUp();
+                volume.value += 1;
                 SetVolume(volume.value);
             }
 		}

@@ -71,17 +71,17 @@ public class LevelMenu : MonoBehaviour
     IEnumerator Stage1(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene("GameStage1");
+        SceneManager.LoadScene("GameStage1", LoadSceneMode.Single);
     }
     IEnumerator Stage2(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene("GameStage2");
+        SceneManager.LoadScene("GameStage2", LoadSceneMode.Single);
     }
     IEnumerator Stage3(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene("GameStage3");
+        SceneManager.LoadScene("GameStage3", LoadSceneMode.Single);
     }
     IEnumerator Back(float seconds)
     {

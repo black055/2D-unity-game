@@ -33304,6 +33304,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1807344032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5232842310525073221, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
+  m_PrefabInstance: {fileID: 5232842310404146410}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1811545874
 GameObject:
   m_ObjectHideFlags: 0
@@ -33589,6 +33594,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2719227801452879243, guid: 0a84f54077193d3489d0de133048df37, type: 3}
   m_PrefabInstance: {fileID: 1144699378}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1888937305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9121314905164980604, guid: 99290d0d5d86c2343b4f8b38ce09ab15, type: 3}
+  m_PrefabInstance: {fileID: 9121314904233959274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1888937310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888937305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7eab91df5a5bf47a1a7edc9b0e90a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseMenu: {fileID: 1807344032}
+  LoseMenu: {fileID: 9121314904233959275}
+  WinMenu: {fileID: 860697298}
 --- !u!4 &1895179160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6309599118117444222, guid: e8bae36b607017047ace9061609051d9, type: 3}
@@ -34325,6 +34350,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 885399078, guid: defbb4b932ec7144faa23af3558a1745, type: 3}
+      propertyPath: LoseMenu
+      value: 
+      objectReference: {fileID: 9121314904233959275}
+    - target: {fileID: 885399078, guid: defbb4b932ec7144faa23af3558a1745, type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 1807344032}
     - target: {fileID: 4945927432284827550, guid: defbb4b932ec7144faa23af3558a1745, type: 3}
       propertyPath: mainCamera
       value: 
@@ -34415,10 +34448,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4945927432333619574, guid: defbb4b932ec7144faa23af3558a1745, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945927432433376413, guid: defbb4b932ec7144faa23af3558a1745, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4945927432441559881, guid: defbb4b932ec7144faa23af3558a1745, type: 3}
@@ -34526,13 +34555,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 64254247}
     - target: {fileID: 5232842310404146419, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
-      propertyPath: Knight
+      propertyPath: WinMenu
       value: 
-      objectReference: {fileID: 7280450137576514570}
+      objectReference: {fileID: 860697298}
     - target: {fileID: 5232842310404146419, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
-      propertyPath: Enemies
+      propertyPath: LoseMenu
       value: 
-      objectReference: {fileID: 1922363492}
+      objectReference: {fileID: 9121314904233959275}
     - target: {fileID: 5232842310805040051, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
       propertyPath: soundInGame
       value: 

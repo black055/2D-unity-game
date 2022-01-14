@@ -2950,6 +2950,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 5232842310525073221}
+  LoseMenu: {fileID: 0}
+  WinMenu: {fileID: 0}
 --- !u!1 &5232842311211717332
 GameObject:
   m_ObjectHideFlags: 0

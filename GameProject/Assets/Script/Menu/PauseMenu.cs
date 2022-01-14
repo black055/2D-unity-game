@@ -50,7 +50,7 @@ public class PauseMenu : MonoBehaviour
 		IEnumerator BackMainMenu(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 
 		IEnumerator Resume(float seconds)

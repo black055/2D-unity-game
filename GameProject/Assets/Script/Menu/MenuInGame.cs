@@ -6,6 +6,8 @@ public class MenuInGame : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject PauseMenu;
+    [SerializeField] GameObject LoseMenu;
+    [SerializeField] GameObject WinMenu;
     // [SerializeField] GameObject Enemies;
     GameObject Knight;
     GameObject[] Enemies;
@@ -26,6 +28,15 @@ public class MenuInGame : MonoBehaviour
             foreach (GameObject enemy in Enemies)
             {
                 pauseController(enemy,true);
+            }
+        }
+        if(LoseMenu.activeSelf || WinMenu.activeSelf) {
+            Knight = GameObject.FindGameObjectWithTag("Knight");
+            pauseController(Knight, false);
+            Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in Enemies)
+            {
+                pauseController(enemy,false);
             }
         }
     }

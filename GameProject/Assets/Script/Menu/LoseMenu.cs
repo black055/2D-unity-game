@@ -38,11 +38,11 @@ public class LoseMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         Scene scene = SceneManager.GetActiveScene();
-				SceneManager.LoadScene(scene.name);
+				SceneManager.LoadScene(scene.name, LoadSceneMode.Single);
     }
 		IEnumerator BackToMenu(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 }

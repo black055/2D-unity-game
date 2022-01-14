@@ -53,19 +53,19 @@ public class FinishMenu : MonoBehaviour
 		IEnumerator BackToMenu(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
     IEnumerator NextLevel(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         if(stage.name == "GameStage1") {
-					SceneManager.LoadScene("GameStage2");
+					SceneManager.LoadScene("GameStage2", LoadSceneMode.Single);
 				}
 				else if(stage.name == "GameStage2") {
-					SceneManager.LoadScene("GameStage3");
+					SceneManager.LoadScene("GameStage3", LoadSceneMode.Single);
 				}
 				else if(stage.name == "GameStage3") {
-					SceneManager.LoadScene(stage.name);
+					SceneManager.LoadScene(stage.name, LoadSceneMode.Single);
 				} else {
 					Debug.Log("No options");
 				}

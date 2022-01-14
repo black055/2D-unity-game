@@ -39,6 +39,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     Sound[] sounds;
+    List<float> volumes = new List<float>();
 
     private void Awake() {
         if (instance != null) {
@@ -54,6 +55,7 @@ public class SoundManager : MonoBehaviour
             GameObject soundObject = new GameObject("Sound_" + sounds[i].name);
             soundObject.transform.SetParent(this.transform);
             sounds[i].SetSource(soundObject.AddComponent<AudioSource>()); 
+            volumes.Add(sounds[i].volume);
         }
     }
 
@@ -65,5 +67,23 @@ public class SoundManager : MonoBehaviour
             }
         }
         Debug.Log("No sound found: " + name);
+    }
+
+    public void VolumeUp() {
+        for (int i = 0; i < sounds.Length; i++) {
+            if (sounds[i].volume >= volumes[i]) {
+                return;
+            }
+            sounds[i].volume += volumes[i]*0.035f;
+        }
+    }
+
+    public void VolumeDown() {
+        for (int i = 0; i < sounds.Length; i++) {
+            if (sounds[i].volume <= 0) {
+                return;
+            }
+            sounds[i].volume -= volumes[i]*0.035f;
+        }
     }
 }
