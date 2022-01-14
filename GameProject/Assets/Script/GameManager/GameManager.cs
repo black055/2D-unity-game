@@ -62,8 +62,10 @@ public class GameManager : MonoBehaviour
     public void RescuseVillager() {
         villagerRescued++;
         villagerCounter.text = villagerRescued.ToString() + "/" + GameObject.FindGameObjectsWithTag("Villager").Length.ToString();
-        if (villagerRescued == GameObject.FindGameObjectsWithTag("Villager").Length)
-            villagerCounter.color = Color.yellow; 
+        if (villagerRescued == GameObject.FindGameObjectsWithTag("Villager").Length) {
+            villagerCounter.color = Color.yellow;
+            soundManager.PlaySound("AllVillagersSafe");
+        } else soundManager.PlaySound("VillagerRescued");
     }
 
     public bool IsFinishedStage() {

@@ -109,3 +109,18 @@ MonoBehaviour:
     startTime: 0
     volume: 1
     pitch: 1
+  - name: VillagerRescued
+    clip: {fileID: 8300000, guid: e1db751bd7201d043ab26a08194a10c6, type: 3}
+    startTime: 0
+    volume: 1
+    pitch: 1
+  - name: AllVillagersSafe
+    clip: {fileID: 8300000, guid: edf9f077d0824ab47abdfb1f9834e6d8, type: 3}
+    startTime: 0
+    volume: 1
+    pitch: 1
+  - name: FinishStage
+    clip: {fileID: 8300000, guid: 3a3a90fc14e0206418cb232390219204, type: 3}
+    startTime: 0
+    volume: 1
+    pitch: 1
