@@ -217,18 +217,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5232842310216502261, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
-      propertyPath: soundInGame
-      value: 
-      objectReference: {fileID: 6188346850740293378}
-    - target: {fileID: 5232842310404146419, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
-      propertyPath: Knight
-      value: 
-      objectReference: {fileID: 1891435405}
-    - target: {fileID: 5232842310404146419, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
-      propertyPath: Enemies
-      value: 
-      objectReference: {fileID: 1648265466}
     - target: {fileID: 5232842310404146419, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
       propertyPath: WinMenu
       value: 
@@ -237,14 +225,6 @@ PrefabInstance:
       propertyPath: LoseMenu
       value: 
       objectReference: {fileID: 644085917}
-    - target: {fileID: 5232842310805040051, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
-      propertyPath: soundInGame
-      value: 
-      objectReference: {fileID: 6188346850740293378}
-    - target: {fileID: 5232842311041123386, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
-      propertyPath: soundInGame
-      value: 
-      objectReference: {fileID: 6188346850740293378}
     - target: {fileID: 5232842311153391461, guid: b7e031a40fb542b43a67276387d1f496, type: 3}
       propertyPath: m_Name
       value: PauseMenu
@@ -57185,14 +57165,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a601d8877fc7c2044a43fd4cbfe168ef, type: 3}
---- !u!114 &6188346850740293378 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6188346850206969973, guid: a601d8877fc7c2044a43fd4cbfe168ef, type: 3}
-  m_PrefabInstance: {fileID: 6188346850740293377}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926166763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13de8a23f8c7d66468adfe9c6276e510, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

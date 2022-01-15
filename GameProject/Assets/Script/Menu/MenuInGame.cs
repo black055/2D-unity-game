@@ -19,11 +19,9 @@ public class MenuInGame : MonoBehaviour
         }
         if(!PauseMenu.activeSelf) {
             Knight = GameObject.FindGameObjectWithTag("Knight");
-            //check Null
+
             pauseController(Knight, true);
-            // if(Knight != null) {
-            //     Knight.GetComponent<KnightController>().enabled = true;
-            // }
+            
             Enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in Enemies)
             {
@@ -49,9 +47,6 @@ public class MenuInGame : MonoBehaviour
         {
             pauseController(enemy,false);
         }
-        // if(Knight != null) {
-        //     Knight.GetComponent<KnightController>().enabled = false;
-        // }
     }
 
     public void pauseController(GameObject objects, bool status) {
@@ -63,6 +58,9 @@ public class MenuInGame : MonoBehaviour
                     script.enabled = status;
                 }
             }
+
+            Animator animator = objects.GetComponent<Animator>();
+            if (animator != null) animator.enabled = status;
         }
     }
 }

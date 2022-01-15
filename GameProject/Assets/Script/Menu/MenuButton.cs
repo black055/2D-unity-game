@@ -20,11 +20,11 @@ public class MenuButton : MonoBehaviour
         Resolution[] resolutions = Screen.resolutions;
         int currentResolutionIndex = 0;
         for(int i = 0; i< resolutions.Length; i++) {
-            if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height){
+            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height){
                 currentResolutionIndex = i;
             }
         }
-				Screen.SetResolution(resolutions[currentResolutionIndex].width, resolutions[currentResolutionIndex].height, false);
+				Screen.SetResolution(resolutions[currentResolutionIndex].width, resolutions[currentResolutionIndex].height, Screen.fullScreen);
 		}
     void Update()
     {

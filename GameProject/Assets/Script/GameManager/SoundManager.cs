@@ -71,6 +71,10 @@ public class SoundManager : MonoBehaviour
     }
 
     public void VolumeChange(float volume) {
-        volumeRate = (80-(-volume))*0.0125f;
+        volumeRate = volume;
+    }
+
+    public float GetCurrentVolume() {
+        return volumeRate;
     }
 }

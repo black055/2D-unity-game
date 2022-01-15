@@ -13,26 +13,23 @@ public class OptionsMenu : MonoBehaviour
 	[SerializeField] GameObject DestinationMenu;
 	[SerializeField] GameObject OptionMenu;
     [SerializeField] AnimatorFunctions animatorFunctions;
-    [SerializeField] Slider volume;
+    [SerializeField] Slider musicVolume, sfxVolume;
     [SerializeField] Toggle isFullScreen;
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Dropdown resolutionDropdown;
-    GameObject soundInGame;
+
+    SoundManager soundManager;
     Resolution[] resolutions;
     private void Start() {
-        setFullScreen(false);
-        float volumeValue;
-        //sound
-        volume.maxValue = 0;
-        volume.minValue = -80;
-        audioMixer.GetFloat("volume", out volumeValue);
-        volume.value = volumeValue;
-        
-        //soundManager
-        soundInGame = GameObject.FindGameObjectWithTag("AudioManager");
-        if(soundInGame != null) {
-            soundInGame.GetComponent<SoundManager>().VolumeChange(volumeValue);
-        }
+        setFullScreen(Screen.fullScreen);
+
+        soundManager = SoundManager.instance;
+        sfxVolume.value = soundManager.GetCurrentVolume() * sfxVolume.maxValue;
+
+        float musicCurrentVolume;
+        audioMixer.GetFloat("volume", out musicCurrentVolume);
+        if (musicCurrentVolume == -80f) musicVolume.value = 0f;
+        else musicVolume.value = Mathf.Round(Mathf.Pow(10, musicCurrentVolume/20) * 100);
 
         //resolution
         resolutions = Screen.resolutions;
@@ -45,7 +42,7 @@ public class OptionsMenu : MonoBehaviour
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height){
+            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height){
                 currentResolutionIndex = i;
             }
         }
@@ -107,24 +104,33 @@ public class OptionsMenu : MonoBehaviour
 		}
         else if(optionMenuController.index == 2) {
             if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-                volume.value -= 1;
-                if(soundInGame!=null) {
-                    soundInGame.GetComponent<SoundManager>().VolumeChange(volume.value);
-                }
-                SetVolume(volume.value);
+                musicVolume.value -= 5;
+                SetVolume(musicVolume.value/musicVolume.maxValue);
             }
             if(Input.GetKeyDown(KeyCode.RightArrow)) {
-                volume.value += 1;
-                if(soundInGame!=null) {
-                    soundInGame.GetComponent<SoundManager>().VolumeChange(volume.value);
+                musicVolume.value += 5;
+                SetVolume(musicVolume.value/musicVolume.maxValue);
+            }
+		}
+        else if(optionMenuController.index == 3) {
+            if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+                sfxVolume.value -= 5;
+                if(soundManager != null) {
+                    soundManager.VolumeChange(sfxVolume.value/sfxVolume.maxValue);
                 }
-                SetVolume(volume.value);
+            }
+            if(Input.GetKeyDown(KeyCode.RightArrow)) {
+                sfxVolume.value += 5;
+                if(soundManager != null) {
+                    soundManager.VolumeChange(sfxVolume.value/sfxVolume.maxValue);
+                }
             }
 		}
     }
 
     public void SetVolume(float volume) {
-        audioMixer.SetFloat("volume", volume);
+        if (volume == 0) audioMixer.SetFloat("volume", -80f);
+        else audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
     }
 
     public void ChangeResolution(int index) {

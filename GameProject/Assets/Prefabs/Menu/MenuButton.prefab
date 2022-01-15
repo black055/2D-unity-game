@@ -378,6 +378,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuButtonController: {fileID: 0}
+  optionMenuController: {fileID: 0}
+  levelMenuController: {fileID: 0}
+  pauseMenuController: {fileID: 0}
+  finishMenuController: {fileID: 0}
+  loseMenuController: {fileID: 0}
   disableOnce: 1
 --- !u!114 &1938994041
 MonoBehaviour:
