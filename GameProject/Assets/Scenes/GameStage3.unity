@@ -56862,18 +56862,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
-    - target: {fileID: 1047325666247785759, guid: 9b92da2545956444fba36e173aff4ccb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047325666247785759, guid: 9b92da2545956444fba36e173aff4ccb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047325666247785759, guid: 9b92da2545956444fba36e173aff4ccb, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b92da2545956444fba36e173aff4ccb, type: 3}
 --- !u!1 &2090423024

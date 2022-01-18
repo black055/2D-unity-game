@@ -267,6 +267,9 @@ public class KnightController : MonoBehaviour
             if (minVelocityY < -25f) Damage(fallDamage, transform.position.x);
             soundManager.PlaySound("KnightFootstep");
         }
+        if (isGrounded && Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) == false) {
+            combatController.StopAttack();
+        }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, groundLayer);
         isTouchingWallCorner = Physics2D.Raycast(wallCornerCheck.position, transform.right, wallCheckDistance, groundLayer);
