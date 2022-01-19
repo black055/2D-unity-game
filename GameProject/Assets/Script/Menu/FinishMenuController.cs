@@ -19,7 +19,7 @@ public class FinishMenuController : MonoBehaviour
 		audioSource = GetComponent<AudioSource>();
 		GameObject gameManager = GameObject.FindGameObjectWithTag("GameManager");
 		life = gameManager.GetComponent<GameManager>().getLifeLeft();
-		second = mainCamera.GetComponent<TimeManager>().countTime;
+		second = mainCamera.GetComponent<TimeManager>().countTime - mainCamera.GetComponent<TimeManager>().prevTime;
 
 		if(second >= 60) {
 			minute = (int)second/60;
