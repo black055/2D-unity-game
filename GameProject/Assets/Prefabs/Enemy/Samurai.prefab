@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7384440761566944565}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0.7, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7384440763088890972}
@@ -143,7 +143,7 @@ MonoBehaviour:
   hitEffect: {fileID: 6924676750654198356, guid: f110e6d1c9349b44bba10fee11133c9e, type: 3}
   bloodEffect: {fileID: 7816581947631615125, guid: 6293f253ca2a7734291f50cb80336f33, type: 3}
   groundCheckDistance: 0.25
-  playerDetectDistance: 10
+  playerDetectDistance: 5
   attackRange: 0.98
   attackCooldown: 2
   stunTime: 0.5
@@ -186,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7384440763054287367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7, y: -0.7, z: 0}
+  m_LocalPosition: {x: 1, y: -0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7384440763088890972}
@@ -488,6 +488,18 @@ PrefabInstance:
     - target: {fileID: 6975622291494323984, guid: be76335b77d81df4cba945c128ba93de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975622291494323986, guid: be76335b77d81df4cba945c128ba93de, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975622291494323986, guid: be76335b77d81df4cba945c128ba93de, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 2560
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975622291494323986, guid: be76335b77d81df4cba945c128ba93de, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1440
       objectReference: {fileID: 0}
     - target: {fileID: 6975622292374397355, guid: be76335b77d81df4cba945c128ba93de, type: 3}
       propertyPath: m_AnchorMax.y

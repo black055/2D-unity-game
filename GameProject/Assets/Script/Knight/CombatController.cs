@@ -10,7 +10,10 @@ public class CombatController : MonoBehaviour
     KnightController knightController;
     private bool isAttacking;
     private bool secondAttacking;
+    private int attackWeight;
 
+    [SerializeField]
+    private GameObject buffEffect;
     [SerializeField]
     private float attackDamage, attackRange;
     [SerializeField]
@@ -25,6 +28,7 @@ public class CombatController : MonoBehaviour
         soundManager = SoundManager.instance;
         isAttacking = false;
         secondAttacking = false;
+        attackWeight = 1;
     }
 
     void Update()
@@ -72,7 +76,7 @@ public class CombatController : MonoBehaviour
         Collider2D[] hitedEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRange, damageableLayer);
 
         float[] attackDetails = new float[2];
-        attackDetails[0] = attackDamage;
+        attackDetails[0] = attackDamage * attackWeight;
         attackDetails[1] = transform.position.x;
 
         foreach (Collider2D enemy in hitedEnemies) {
@@ -92,5 +96,16 @@ public class CombatController : MonoBehaviour
 
     public bool GetAttacking() {
         return (isAttacking || secondAttacking);
+    }
+
+    public void CollectDoubleDamage(float duration) {
+        attackWeight = 2;
+        buffEffect.SetActive(true);
+        Invoke("DoubleDamageEnd", duration);
+    }
+
+    private void DoubleDamageEnd() {
+        attackWeight = 1;
+        buffEffect.SetActive(false);
     }
 }
