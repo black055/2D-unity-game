@@ -75,4 +75,9 @@ public class GameManager : MonoBehaviour
     public int getLifeLeft() {
         return lifeLeft;
     }
+
+    public void ChangeLife(int amount) {
+        lifeLeft += amount;
+        lifeCounter.text = "x " + lifeLeft.ToString();
+    }
 }

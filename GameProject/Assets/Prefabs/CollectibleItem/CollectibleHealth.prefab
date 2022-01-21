@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 986307282653300731}
   - component: {fileID: 986307282653300728}
   - component: {fileID: 986307282653300612}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CollectibleHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 986307282653300729}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.9035153, y: 4.416447, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -117,18 +117,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0012822896, y: -0.0012823772}
+  m_Offset: {x: -0.0053653717, y: -0.0012823939}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1.3333334, y: 1.3333334}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11225526, y: 0.1071261}
+  m_Size: {x: 0.4715767, y: 0.45002943}
   m_EdgeRadius: 0
 --- !u!114 &986307282653300612
 MonoBehaviour:
@@ -143,4 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfHealthRecovered: 5
-  pickUpClip: {fileID: 0}
+  pickUpClip: {fileID: 8300000, guid: b550bd59a2b97194eb9185529f4e5ab9, type: 3}
