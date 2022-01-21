@@ -8,12 +8,13 @@ public class CombatController : MonoBehaviour
     Animator animator;
     SoundManager soundManager;
     KnightController knightController;
+    AbilityCooldown abilityCooldown;
     private bool isAttacking;
     private bool secondAttacking;
     private int attackWeight;
 
     [SerializeField]
-    private GameObject buffEffect;
+    private GameObject buffEffect, canvasUI;
     [SerializeField]
     private float attackDamage, attackRange;
     [SerializeField]
@@ -23,6 +24,7 @@ public class CombatController : MonoBehaviour
 
     private void Start()
     {
+        abilityCooldown = canvasUI.GetComponent<AbilityCooldown>();
         animator = GetComponent<Animator>();
         knightController = GetComponent<KnightController>();
         soundManager = SoundManager.instance;
@@ -101,7 +103,9 @@ public class CombatController : MonoBehaviour
     public void CollectDoubleDamage(float duration) {
         attackWeight = 2;
         buffEffect.SetActive(true);
+        CancelInvoke("DoubleDamageEnd");
         Invoke("DoubleDamageEnd", duration);
+        if (abilityCooldown != null) abilityCooldown.DoubleDamageCooldown(duration);  
     }
 
     private void DoubleDamageEnd() {
