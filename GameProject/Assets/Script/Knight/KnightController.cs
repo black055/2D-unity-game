@@ -7,6 +7,7 @@ public class KnightController : MonoBehaviour
     Rigidbody2D rb2d;
     Animator animator;
     CombatController combatController;
+    AbilityCooldown abilityCooldown;
     StatController statController;
     SpriteRenderer spriteRenderer;
     SoundManager soundManager;
@@ -57,6 +58,11 @@ public class KnightController : MonoBehaviour
     private Transform wallCornerCheck, groundCheck, wallCheck;
     [SerializeField]
     private LayerMask groundLayer;
+    [SerializeField]
+    private ParticleSystem slideEffect;
+    [SerializeField]
+    private GameObject jumpEffect, canvasUI;
+    private ParticleSystem.EmissionModule footstepEmission;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +74,8 @@ public class KnightController : MonoBehaviour
         wallJumpDirection.Normalize();
         spriteRenderer = GetComponent<SpriteRenderer>();
         soundManager = SoundManager.instance;
+        footstepEmission = slideEffect.emission;
+        abilityCooldown = canvasUI.GetComponent<AbilityCooldown>();
     }
 
     void Update() {
@@ -120,9 +128,10 @@ public class KnightController : MonoBehaviour
     private void HandleInput() {
         if (!(isSliding || isDashing) && Time.time > nextTimeMove) horizontal = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && !isSliding && !isAttacking && !isClimbingWall) {
+        if (Input.GetButtonDown("Jump") && !isSliding && !isAttacking && !isClimbingWall && !knockback) {
             if (isGrounded && !isUnderneathSomething) {
                 soundManager.PlaySound("KnightJump");
+                Instantiate(jumpEffect, groundCheck.position, Quaternion.identity);
                 rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
                 
@@ -149,6 +158,7 @@ public class KnightController : MonoBehaviour
                 soundManager.PlaySound("KnightSlide");
                 isSliding = true;
                 nextSlideTime = Time.time + slideCooldownTime;
+                abilityCooldown.SlideCooldown(slideCooldownTime);
                 animator.SetTrigger("isSliding");
                 Invoke("SetSlidingToFalse", slidingTime);
             }
@@ -160,6 +170,7 @@ public class KnightController : MonoBehaviour
                 soundManager.PlaySound("KnightDash");
                 isDashing = true;
                 nextDashTime = Time.time + dashCooldownTime;
+                abilityCooldown.DashCooldown(dashCooldownTime);
                 animator.SetBool("isDashing", true);
                 Invoke("SetDashingToFalse", dashingTime);
             }
@@ -236,6 +247,7 @@ public class KnightController : MonoBehaviour
                 wallClimbPos2 = new Vector2(wallCornerBottom.x - wallClimbXOffset2, wallCornerBottom.y + wallClimbYOffset2);
             }
             Invoke("climbFinished", 0.6f);
+            minVelocityY = 0f;
         }
 
         if (isClimbingWall) {
@@ -243,6 +255,10 @@ public class KnightController : MonoBehaviour
         }
 
         isAttacking = combatController.GetAttacking();
+
+        if (isSliding && isGrounded) {
+            footstepEmission.rateOverTime = 40f;
+        } else footstepEmission.rateOverTime = 0f;
     }
 
     private void FlipX()
