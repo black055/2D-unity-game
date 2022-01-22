@@ -142,5 +142,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f429f55e497a84ca9d14af7e60dbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfStaminaRecovered: 40
+  amountOfStaminaRecovered: 50
   pickUpClip: {fileID: 8300000, guid: add8574fcd100dd4eb61ef54549015fb, type: 3}
