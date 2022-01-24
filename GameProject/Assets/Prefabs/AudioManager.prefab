@@ -124,3 +124,23 @@ MonoBehaviour:
     startTime: 0
     volume: 1
     pitch: 1
+  - name: PickupHealth
+    clip: {fileID: 8300000, guid: ee0cb82a6fe958e479d40cca848502d7, type: 3}
+    startTime: 0
+    volume: 1
+    pitch: 1
+  - name: PickupLife
+    clip: {fileID: 8300000, guid: b550bd59a2b97194eb9185529f4e5ab9, type: 3}
+    startTime: 0
+    volume: 1
+    pitch: 1
+  - name: PickupStamina
+    clip: {fileID: 8300000, guid: add8574fcd100dd4eb61ef54549015fb, type: 3}
+    startTime: 0
+    volume: 0.7
+    pitch: 1
+  - name: PickupDamage
+    clip: {fileID: 8300000, guid: 2400d2af62b90564ba6c5a0f8d348195, type: 3}
+    startTime: 0
+    volume: 0.7
+    pitch: 1

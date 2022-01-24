@@ -47,8 +47,10 @@ public class StatController : MonoBehaviour
     }
 
     public bool RecoverStamina(float amount) {
-        if (currentStamina <= maxStamina) {
+        if (currentStamina < maxStamina) {
             currentStamina += amount;
+            if (currentStamina > maxStamina)
+                currentStamina = maxStamina;
             return true;
         }
         return false;

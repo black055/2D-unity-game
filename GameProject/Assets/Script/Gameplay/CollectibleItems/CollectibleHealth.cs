@@ -6,8 +6,11 @@ public class CollectibleHealth : MonoBehaviour
 {
   [SerializeField]
   private float amountOfHealthRecovered;
-  [SerializeField]
-  private AudioClip pickUpClip;
+  SoundManager soundManager;
+
+  void Start() {
+    soundManager = SoundManager.instance;
+  }
 
   void OnTriggerEnter2D(Collider2D other)
   {
@@ -17,8 +20,7 @@ public class CollectibleHealth : MonoBehaviour
       if (knightStatController.IsFullHealth())
         return;
       knightStatController.ChangeHealth(amountOfHealthRecovered);
-      if (pickUpClip)
-        AudioSource.PlayClipAtPoint(pickUpClip, other.transform.position);
+      soundManager.PlaySound("PickupHealth");
       Destroy(gameObject);
     }
   }

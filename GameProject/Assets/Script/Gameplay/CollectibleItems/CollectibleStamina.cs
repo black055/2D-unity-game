@@ -6,8 +6,12 @@ public class CollectibleStamina : MonoBehaviour
 {
   [SerializeField]
   private float amountOfStaminaRecovered;
-  [SerializeField]
-  private AudioClip pickUpClip;
+  SoundManager soundManager;
+
+  void Start()
+  {
+    soundManager = SoundManager.instance;
+  }
 
   void OnTriggerEnter2D(Collider2D other)
   {
@@ -16,8 +20,7 @@ public class CollectibleStamina : MonoBehaviour
       StatController knightStatController = other.GetComponent<StatController>();
       if (knightStatController.RecoverStamina(amountOfStaminaRecovered))
       {
-        if (pickUpClip)
-          AudioSource.PlayClipAtPoint(pickUpClip, other.transform.position);
+        soundManager.PlaySound("PickupStamina");
         Destroy(gameObject);
       }
     }

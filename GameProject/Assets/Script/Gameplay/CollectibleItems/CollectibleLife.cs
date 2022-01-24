@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CollectibleLife : MonoBehaviour
 {
-  [SerializeField]
-  private AudioClip pickUpClip;
   GameManager gameManager;
+  SoundManager soundManager;
 
   void Start()
   {
     gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    soundManager = SoundManager.instance;
   }
 
   void OnTriggerEnter2D(Collider2D other)
@@ -18,8 +18,7 @@ public class CollectibleLife : MonoBehaviour
     if (other.tag == "Knight" && gameManager != null)
     {
       gameManager.ChangeLife(1);
-      if (pickUpClip)
-        AudioSource.PlayClipAtPoint(pickUpClip, other.transform.position);
+      soundManager.PlaySound("PickupLife");
       Destroy(gameObject);
     }
   }
