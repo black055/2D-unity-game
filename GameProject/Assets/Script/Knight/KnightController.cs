@@ -238,6 +238,7 @@ public class KnightController : MonoBehaviour
         // Check climb wall
         if (wallCornerDetected && !isClimbingWall) {
             isClimbingWall = true;
+            combatController.StopAttack();
             animator.SetBool("isClimbing", true);
             if (facingDirection == 1) {
                 wallClimbPos1 = new Vector2(wallCornerBottom.x - wallClimbXOffset1, wallCornerBottom.y + wallClimbYOffset1);

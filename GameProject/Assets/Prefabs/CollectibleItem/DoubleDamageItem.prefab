@@ -142,5 +142,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bde54c2c9b726498ad648bf3c1f580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpClip: {fileID: 0}
+  pickUpClip: {fileID: 8300000, guid: 2400d2af62b90564ba6c5a0f8d348195, type: 3}
   duration: 30

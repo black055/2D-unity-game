@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject knight;
     [SerializeField]
-    private int lifeLeft = 3;
+    private int lifeLeft = 2;
     [SerializeField]
     private Text lifeCounter, villagerCounter;
     private CinemachineVirtualCamera playerCamera;
